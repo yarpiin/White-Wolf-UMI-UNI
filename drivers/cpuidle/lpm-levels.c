@@ -122,12 +122,6 @@ static void cluster_prepare(struct lpm_cluster *cluster,
 static bool print_parsed_dt;
 module_param_named(print_parsed_dt, print_parsed_dt, bool, 0664);
 
-static bool sleep_disabled;
-module_param_named(sleep_disabled, sleep_disabled, bool, 0664);
-
-static bool sleep_disabled_dev;
-module_param_named(sleep_disabled_dev, sleep_disabled_dev, bool, 0664);
-
 /**
  * msm_cpuidle_get_deep_idle_latency - Get deep idle latency value
  *
@@ -160,24 +154,6 @@ uint32_t register_system_pm_ops(struct system_pm_ops *pm_ops)
 #define EVENT_SUM   0x2
 static unsigned long lpm_dev_bitmp = 0;
 
-void lpm_disable_for_dev(bool on, char event_dev)
-{
-	unsigned long mask = BIT_MASK(event_dev);
-
-	if (event_dev > EVENT_SUM) {
-		pr_err("No support device %d disable lpm\n", event_dev);
-		return;
-	}
-
-	if (on) {
-		lpm_dev_bitmp |= mask;
-		sleep_disabled_dev = !!on;
-	} else {
-		lpm_dev_bitmp &= ~mask;
-		if(lpm_dev_bitmp == 0)
-			sleep_disabled_dev = !!on;
-	}
-}
 EXPORT_SYMBOL(lpm_disable_for_dev);
 
 static uint32_t least_cluster_latency(struct lpm_cluster *cluster,
@@ -689,9 +665,6 @@ static inline bool lpm_disallowed(s64 sleep_us, int cpu, struct lpm_cpu *pm_cpu)
 	if (cpu_isolated(cpu))
 		goto out;
 
-	if (sleep_disabled)
-		return true;
-
 	bias_time = sched_lpm_disallowed_time(cpu);
 	if (bias_time) {
 		pm_cpu->bias = bias_time;
@@ -738,7 +711,7 @@ static int cpu_power_select(struct cpuidle_device *dev,
 	uint32_t min_residency, max_residency;
 	struct power_params *pwr_params;
 
-	if (lpm_disallowed(sleep_us, dev->cpu, cpu) || sleep_disabled_dev)
+	if (lpm_disallowed(sleep_us, dev->cpu, cpu))
 		goto done_select;
 
 	idx_restrict = cpu->nlevels + 1;
