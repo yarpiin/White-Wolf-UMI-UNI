@@ -239,6 +239,8 @@ static void sde_encoder_phys_cmd_te_rd_ptr_irq(void *arg, int irq_idx)
 	if (!phys_enc || !phys_enc->hw_pp || !phys_enc->hw_intf)
 		return;
 
+	sde_encoder_save_vsync_info(phys_enc);
+
 	SDE_ATRACE_BEGIN("rd_ptr_irq");
 	cmd_enc = to_sde_encoder_phys_cmd(phys_enc);
 	ctl = phys_enc->hw_ctl;
@@ -949,7 +951,7 @@ static int _get_tearcheck_threshold(struct sde_encoder_phys *phys_enc,
 
 		if (phys_enc->parent_ops.get_qsync_fps)
 			phys_enc->parent_ops.get_qsync_fps(
-				phys_enc->parent, &qsync_min_fps, 0);
+				phys_enc->parent, &qsync_min_fps);
 
 		if (!qsync_min_fps || !default_fps || !yres) {
 			SDE_ERROR_CMDENC(cmd_enc,

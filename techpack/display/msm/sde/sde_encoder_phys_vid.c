@@ -10,6 +10,7 @@
 #include "sde_formats.h"
 #include "dsi_display.h"
 #include "sde_trace.h"
+#include "xiaomi_frame_stat.h"
 
 #define SDE_DEBUG_VIDENC(e, fmt, ...) SDE_DEBUG("enc%d intf%d " fmt, \
 		(e) && (e)->base.parent ? \
@@ -461,7 +462,7 @@ static void sde_encoder_phys_vid_setup_timing_engine(
 exit:
 	if (phys_enc->parent_ops.get_qsync_fps)
 		phys_enc->parent_ops.get_qsync_fps(
-			phys_enc->parent, &qsync_min_fps, mode.vrefresh);
+				phys_enc->parent, &qsync_min_fps);
 
 	/* only panels which support qsync will have a non-zero min fps */
 	if (qsync_min_fps) {
@@ -489,6 +490,8 @@ static void sde_encoder_phys_vid_vblank_irq(void *arg, int irq_idx)
 	if (!hw_ctl)
 		return;
 
+	sde_encoder_save_vsync_info(phys_enc);
+
 	SDE_ATRACE_BEGIN("vblank_irq");
 
 	/*
@@ -515,6 +518,7 @@ static void sde_encoder_phys_vid_vblank_irq(void *arg, int irq_idx)
 		event = SDE_ENCODER_FRAME_EVENT_DONE |
 			SDE_ENCODER_FRAME_EVENT_SIGNAL_RETIRE_FENCE |
 			SDE_ENCODER_FRAME_EVENT_SIGNAL_RELEASE_FENCE;
+		frame_stat_collector(0, VBLANK_TS);
 	}
 
 not_flushed:
@@ -1125,21 +1129,13 @@ static void sde_encoder_phys_vid_handle_post_kickoff(
 static void sde_encoder_phys_vid_prepare_for_commit(
 		struct sde_encoder_phys *phys_enc)
 {
-	struct drm_crtc *crtc;
 
-	if (!phys_enc  || !phys_enc->parent) {
+	if (!phys_enc) {
 		SDE_ERROR("invalid encoder parameters\n");
 		return;
 	}
 
-	crtc = phys_enc->parent->crtc;
-	if (!crtc || !crtc->state) {
-		SDE_ERROR("invalid crtc or crtc state\n");
-		return;
-	}
-
-	if (!msm_is_mode_seamless_vrr(&crtc->state->adjusted_mode) &&
-		sde_connector_is_qsync_updated(phys_enc->connector))
+	if (sde_connector_is_qsync_updated(phys_enc->connector))
 		_sde_encoder_phys_vid_avr_ctrl(phys_enc);
 
 }

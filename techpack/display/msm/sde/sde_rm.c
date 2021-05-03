@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2016-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
  */
 
 #define pr_fmt(fmt)	"[drm:%s] " fmt, __func__
@@ -2068,11 +2068,47 @@ void sde_rm_release(struct sde_rm *rm, struct drm_encoder *enc, bool nxt)
 	} else {
 		SDE_DEBUG("release rsvp[s%de%d]\n", rsvp->seq,
 				rsvp->enc_id);
+		SDE_EVT32(rsvp, rsvp->seq, rsvp->enc_id, nxt, DRMID(enc), DRMID(conn));
 		_sde_rm_release_rsvp(rm, rsvp, conn);
 	}
 
 end:
 	mutex_unlock(&rm->rm_lock);
+}
+
+static void _sde_rm_check_and_modify_commit_rsvps(
+		struct sde_rm *rm,
+		struct sde_rm_rsvp *rsvp)
+{
+
+	struct sde_rm_hw_blk *blk;
+	enum sde_hw_blk_type type;
+	bool modify = false;
+
+	if (!rsvp)
+		return;
+	for (type = 0; type < SDE_HW_BLK_MAX; type++) {
+		list_for_each_entry(blk, &rm->hw_blks[type], list) {
+			if (blk->rsvp_nxt &&  blk->rsvp_nxt->enc_id == rsvp->enc_id
+					 && blk->rsvp_nxt != rsvp) {
+				pr_err("rsvp :%x blk->rsvp_nxt :%x, enc_id: %x type :%x\n",
+					rsvp, blk->rsvp_nxt, blk->rsvp_nxt->enc_id , type);
+				SDE_EVT32(rsvp, blk->rsvp_nxt, blk->rsvp_nxt->enc_id , type);
+				modify = true;
+			}
+		}
+	}
+
+	if (modify) {
+		for (type = 0; type < SDE_HW_BLK_MAX; type++) {
+			list_for_each_entry(blk, &rm->hw_blks[type], list) {
+				if (blk->rsvp_nxt && blk->rsvp_nxt->enc_id
+						 == rsvp->enc_id) {
+					blk->rsvp_nxt = rsvp;
+				}
+			}
+		}
+	}
 }
 
 static int _sde_rm_commit_rsvp(
@@ -2083,6 +2119,8 @@ static int _sde_rm_commit_rsvp(
 	struct sde_rm_hw_blk *blk;
 	enum sde_hw_blk_type type;
 	int ret = 0;
+
+	_sde_rm_check_and_modify_commit_rsvps(rm, rsvp);
 
 	/* Swap next rsvp to be the active */
 	for (type = 0; type < SDE_HW_BLK_MAX; type++) {
@@ -2126,8 +2164,8 @@ struct sde_rm_rsvp *_sde_rm_poll_get_rsvp_nxt_locked(struct sde_rm *rm,
 		usleep_range(sleep, sleep * 2);
 		mutex_lock(&rm->rm_lock);
 	}
-	/* make sure to get latest rsvp_next to avoid use after free issues  */
-	return _sde_rm_get_rsvp_nxt(rm, enc);
+
+	return rsvp_nxt;
 }
 
 int sde_rm_reserve(
@@ -2184,15 +2222,13 @@ int sde_rm_reserve(
 	 * Poll for rsvp_nxt clear, allow the check_only commit if rsvp_nxt
 	 * gets cleared and bailout if it does not get cleared before timeout.
 	 */
-	if (test_only && rsvp_nxt) {
+	if (test_only && rsvp_cur && rsvp_nxt) {
 		rsvp_nxt = _sde_rm_poll_get_rsvp_nxt_locked(rm, enc);
-		rsvp_cur = _sde_rm_get_rsvp(rm, enc);
 		if (rsvp_nxt) {
 			SDE_ERROR("poll timeout cur %d nxt %d enc %d\n",
-				(rsvp_cur) ? rsvp_cur->seq : -1,
-				rsvp_nxt->seq, enc->base.id);
-			SDE_EVT32(enc->base.id, (rsvp_cur) ? rsvp_cur->seq : -1,
-					rsvp_nxt->seq, SDE_EVTLOG_ERROR);
+				rsvp_cur->seq, rsvp_nxt->seq, enc->base.id);
+			SDE_EVT32(rsvp_cur->seq, rsvp_nxt->seq,
+					 enc->base.id, SDE_EVTLOG_ERROR);
 			ret = -EINVAL;
 			goto end;
 		}
