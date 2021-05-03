@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
  */
 
 #ifndef __SDE_ROTATOR_BASE_H__
@@ -18,7 +18,6 @@
 #include "sde_rotator_io_util.h"
 #include "sde_rotator_smmu.h"
 #include "sde_rotator_formats.h"
-#include <linux/pm_qos.h>
 
 /* HW Revisions for different targets */
 #define SDE_GET_MAJOR_REV(rev)	((rev) >> 28)
@@ -46,7 +45,6 @@
 #define SDE_MDP_HW_REV_540	SDE_MDP_REV(5, 4, 0)	/* sdmtrinket v1.0 */
 #define SDE_MDP_HW_REV_600	SDE_MDP_REV(6, 0, 0)    /* msmnile+ v1.0 */
 #define SDE_MDP_HW_REV_630	SDE_MDP_REV(6, 3, 0)	/* bengal v1.0 */
-#define SDE_MDP_HW_REV_6100	SDE_MDP_REV(6, 10, 0)	/* khaje v1.0 */
 
 #define SDE_MDP_VBIF_4_LEVEL_REMAPPER	4
 #define SDE_MDP_VBIF_8_LEVEL_REMAPPER	8
@@ -262,11 +260,6 @@ struct sde_rot_data_type {
 	u32 npriority_lvl;
 
 	u32 vbif_xin_id[MAX_XIN];
-
-	struct pm_qos_request pm_qos_rot_cpu_req;
-	u32 rot_pm_qos_cpu_count;
-	u32 rot_pm_qos_cpu_mask;
-	u32 rot_pm_qos_cpu_dma_latency;
 
 	u32 vbif_memtype_count;
 	u32 *vbif_memtype;

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2016-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
  */
 
 #define pr_fmt(fmt)	"sde_dbg:[%s] " fmt, __func__
@@ -103,22 +103,27 @@ exit:
 
 void sde_reglog_log(u8 blk_id, u32 val, u32 addr)
 {
+	unsigned long flags;
 	struct sde_dbg_reglog_log *log;
 	struct sde_dbg_reglog *reglog = sde_dbg_base_reglog;
-	int index;
 
 	if (!reglog)
 		return;
 
-	index = abs(atomic64_inc_return(&reglog->curr) % SDE_REGLOG_ENTRY);
+	spin_lock_irqsave(&reglog->spin_lock, flags);
 
-	log = &reglog->logs[index];
+	log = &reglog->logs[reglog->curr];
+
 	log->blk_id = blk_id;
 	log->val = val;
 	log->addr = addr;
 	log->time = local_clock();
 	log->pid = current->pid;
+
+	reglog->curr = (reglog->curr + 1) % SDE_REGLOG_ENTRY;
 	reglog->last++;
+
+	spin_unlock_irqrestore(&reglog->spin_lock, flags);
 }
 
 /* always dump the last entries which are not dumped yet */
@@ -239,7 +244,7 @@ struct sde_dbg_reglog *sde_reglog_init(void)
 	if (!reglog)
 		return ERR_PTR(-ENOMEM);
 
-	atomic64_set(&reglog->curr, 0);
+	spin_lock_init(&reglog->spin_lock);
 
 	return reglog;
 }

@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2015-2019, 2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
  */
 
 #ifndef _SDE_HW_MDSS_H
@@ -169,9 +169,9 @@ enum sde_stage {
 	SDE_STAGE_8,
 	SDE_STAGE_9,
 	SDE_STAGE_10,
+	SDE_STAGE_11,
 	SDE_STAGE_MAX
 };
-
 enum sde_dspp {
 	DSPP_0 = 1,
 	DSPP_1,
@@ -184,12 +184,6 @@ enum sde_ltm {
 	LTM_0 = DSPP_0,
 	LTM_1,
 	LTM_MAX
-};
-
-enum sde_rc {
-	RC_0 = DSPP_0,
-	RC_1,
-	RC_MAX
 };
 
 enum sde_ds {
@@ -687,7 +681,6 @@ struct sde_hw_autorefresh {
  * @rd_ptr_frame_count:	num frames sent since enabling interface
  * @rd_ptr_line_count:	current line on panel (rd ptr)
  * @wr_ptr_line_count:	current line within pp fifo (wr ptr)
- * @intf_frame_count:	num frames read from intf
  */
 struct sde_hw_pp_vsync_info {
 	u32 pp_idx;
@@ -696,7 +689,6 @@ struct sde_hw_pp_vsync_info {
 	u32 rd_ptr_frame_count;
 	u32 rd_ptr_line_count;
 	u32 wr_ptr_line_count;
-	u32 intf_frame_count;
 };
 
 #endif  /* _SDE_HW_MDSS_H */

@@ -523,14 +523,6 @@ void sde_encoder_phys_setup_cdm(struct sde_encoder_phys *phys_enc,
 		struct sde_rect *wb_roi);
 
 /**
- * sde_encoder_helper_get_pp_line_count - pingpong linecount helper function
- * @drm_enc:    Pointer to drm encoder structure
- * @info:       structure used to populate the pp line count information
- */
-void sde_encoder_helper_get_pp_line_count(struct drm_encoder *drm_enc,
-		struct sde_hw_pp_vsync_info *info);
-
-/**
  * sde_encoder_helper_trigger_flush - control flush helper function
  *	This helper function may be optionally specified by physical
  *	encoders if they require ctl_flush triggering.
@@ -575,6 +567,8 @@ int sde_encoder_helper_wait_event_timeout(
  */
 void sde_encoder_helper_get_jitter_bounds_ns(struct drm_encoder *encoder,
 			u64 *l_bound, u64 *u_bound);
+
+void sde_encoder_save_vsync_info(struct sde_encoder_phys *phys_enc);
 
 /**
  * sde_encoder_helper_switch_vsync - switch vsync source to WD or default

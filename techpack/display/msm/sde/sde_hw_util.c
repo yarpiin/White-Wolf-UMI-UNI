@@ -67,15 +67,12 @@ static u32 sde_hw_util_log_mask = SDE_DBG_MASK_NONE;
 typedef void (*scaler_lut_type)(struct sde_hw_blk_reg_map *,
 		struct sde_hw_scaler3_cfg *, u32);
 
-void sde_reg_write(struct sde_hw_blk_reg_map *c,
-		u32 reg_off,
-		u32 val,
-		const char *name)
+void sde_reg_write(struct sde_hw_blk_reg_map *c, u32 reg_off, u32 val)
 {
 	/* don't need to mutex protect this */
 	if (c->log_mask & sde_hw_util_log_mask)
 		SDE_DEBUG_DRIVER("[%s:0x%X] <= 0x%X\n",
-				name, c->blk_off + reg_off, val);
+				c->blk_off + reg_off, val);
 	SDE_EVT32_REGWRITE(c->blk_off, reg_off, val);
 	writel_relaxed(val, c->base_off + c->blk_off + reg_off);
 	SDE_REG_LOG(c->log_mask ? ilog2(c->log_mask)+1 : 0,
