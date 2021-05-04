@@ -22,53 +22,14 @@ menu "Memory initialization"
 config CC_HAS_AUTO_VAR_INIT
 	def_bool $(cc-option,-ftrivial-auto-var-init=pattern)
 
-choice
-	prompt "Initialize kernel stack variables at function entry"
-	default GCC_PLUGIN_STRUCTLEAK_BYREF_ALL if COMPILE_TEST && GCC_PLUGINS
-	default INIT_STACK_ALL if COMPILE_TEST && CC_HAS_AUTO_VAR_INIT
-	default INIT_STACK_NONE
-	help
-	  This option enables initialization of stack variables at
-	  function entry time. This has the possibility to have the
-	  greatest coverage (since all functions can have their
-	  variables initialized), but the performance impact depends
-	  on the function calling complexity of a given workload's
-	  syscalls.
-
-	  This chooses the level of coverage over classes of potentially
-	  uninitialized variables. The selected class will be
-	  initialized before use in a function.
-
-	config INIT_STACK_NONE
-		bool "no automatic initialization (weakest)"
+config INIT_STACK_NONE
+	  bool
+	  default y
 		help
 		  Disable automatic stack variable initialization.
 		  This leaves the kernel vulnerable to the standard
 		  classes of uninitialized stack variable exploits
 		  and information exposures.
-
-	config GCC_PLUGIN_STRUCTLEAK_BYREF_ALL
-		bool "zero-init anything passed by reference (very strong)"
-		depends on GCC_PLUGINS
-		select GCC_PLUGIN_STRUCTLEAK
-		help
-		  Zero-initialize any stack variables that may be passed
-		  by reference and had not already been explicitly
-		  initialized. This is intended to eliminate all classes
-		  of uninitialized stack variable exploits and information
-		  exposures.
-
-	config INIT_STACK_ALL
-		bool "0xAA-init everything on the stack (strongest)"
-		depends on CC_HAS_AUTO_VAR_INIT
-		help
-		  Initializes everything on the stack with a 0xAA
-		  pattern. This is intended to eliminate all classes
-		  of uninitialized stack variable exploits and information
-		  exposures, even variables that were warned to have been
-		  left uninitialized.
-
-endchoice
 
 config GCC_PLUGIN_STRUCTLEAK_VERBOSE
 	bool "Report forcefully initialized variables"
