@@ -154,8 +154,6 @@ uint32_t register_system_pm_ops(struct system_pm_ops *pm_ops)
 #define EVENT_SUM   0x2
 static unsigned long lpm_dev_bitmp = 0;
 
-EXPORT_SYMBOL(lpm_disable_for_dev);
-
 static uint32_t least_cluster_latency(struct lpm_cluster *cluster,
 					struct latency_level *lat_level)
 {
