@@ -2562,39 +2562,6 @@ static int _sde_plane_validate_shared_crtc(struct sde_plane *psde,
 
 }
 
-static int _sde_plane_validate_fb(struct sde_plane *psde,
-				struct drm_plane_state *state)
-{
-	struct sde_plane_state *pstate;
-	struct drm_framebuffer *fb;
-	uint32_t fb_ns = 0, fb_sec = 0, fb_sec_dir = 0;
-	unsigned long flags = 0;
-	int mode, ret = 0, n, i;
-
-	pstate = to_sde_plane_state(state);
-	mode = sde_plane_get_property(pstate,
-				PLANE_PROP_FB_TRANSLATION_MODE);
-
-	fb = state->fb;
-	n = fb->format->num_planes;
-	for (i = 0; i < n; i++) {
-		ret = msm_fb_obj_get_attrs(fb->obj[i], &fb_ns, &fb_sec,
-			&fb_sec_dir, &flags);
-
-		if (!ret && ((fb_ns && (mode != SDE_DRM_FB_NON_SEC)) ||
-			(fb_sec && (mode != SDE_DRM_FB_SEC)) ||
-			(fb_sec_dir && (mode != SDE_DRM_FB_SEC_DIR_TRANS)))) {
-			SDE_ERROR_PLANE(psde, "mode:%d fb:%d flag:0x%x rc:%d\n",
-			mode, fb->base.id, flags, ret);
-			SDE_EVT32(psde->base.base.id, fb->base.id, flags,
-			fb_ns, fb_sec, fb_sec_dir, ret, SDE_EVTLOG_ERROR);
-			return -EINVAL;
-		}
-	}
-
-	return 0;
-}
-
 static int sde_plane_sspp_atomic_check(struct drm_plane *plane,
 		struct drm_plane_state *state)
 {
@@ -2704,11 +2671,6 @@ static int sde_plane_sspp_atomic_check(struct drm_plane *plane,
 		return ret;
 
 	ret = _sde_plane_validate_shared_crtc(psde, state);
-
-	if (ret)
-		return ret;
-
-	ret = _sde_plane_validate_fb(psde, state);
 
 	if (ret)
 		return ret;
@@ -3334,18 +3296,6 @@ static void _sde_plane_atomic_disable(struct drm_plane *plane,
 				SDE_SSPP_RECT_SOLO, SDE_SSPP_MULTIRECT_NONE);
 }
 
-int sde_plane_is_fod_layer(const struct drm_plane_state *drm_state)
-{
-	struct sde_plane_state *pstate;
-
-	if (!drm_state)
-		return 0;
-
-	pstate = to_sde_plane_state(drm_state);
-
-	return sde_plane_get_property(pstate, PLANE_PROP_FOD);
-}
-
 static void sde_plane_atomic_update(struct drm_plane *plane,
 				struct drm_plane_state *old_state)
 {
@@ -3542,6 +3492,8 @@ static void _sde_plane_install_properties(struct drm_plane *plane,
 	const struct sde_format_extended *format_list;
 	struct sde_kms_info *info;
 	struct sde_plane *psde = to_sde_plane(plane);
+	int zpos_max = 255;
+	int zpos_def = 0;
 	char feature_name[256];
 
 	if (!plane || !psde) {
@@ -3558,14 +3510,26 @@ static void _sde_plane_install_properties(struct drm_plane *plane,
 
 	psde->catalog = catalog;
 
+	if (sde_is_custom_client()) {
+		if (catalog->mixer_count &&
+				catalog->mixer[0].sblk->maxblendstages) {
+			zpos_max = catalog->mixer[0].sblk->maxblendstages - 1;
+			if (catalog->has_base_layer &&
+					(zpos_max > SDE_STAGE_MAX - 1))
+				zpos_max = SDE_STAGE_MAX - 1;
+			else if (zpos_max > SDE_STAGE_MAX - SDE_STAGE_0 - 1)
+				zpos_max = SDE_STAGE_MAX - SDE_STAGE_0 - 1;
+		}
+	} else if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+		/* reserve zpos == 0 for primary planes */
+		zpos_def = drm_plane_index(plane) + 1;
+	}
+
 	msm_property_install_range(&psde->property_info, "mi_layer_info",
 		0x0, 0, U32_MAX, 0, PLANE_PROP_MI_LAYER_INFO);
 
 	msm_property_install_range(&psde->property_info, "zpos",
-		0x0, 0, INT_MAX, 0, PLANE_PROP_ZPOS);
-
-	msm_property_install_range(&psde->property_info, "fod",
-		0x0, 0, INT_MAX, 0, PLANE_PROP_FOD);
+		0x0, 0, zpos_max, zpos_def, PLANE_PROP_ZPOS);
 
 	msm_property_install_range(&psde->property_info, "alpha",
 		0x0, 0, 255, 255, PLANE_PROP_ALPHA);
@@ -3988,8 +3952,6 @@ static int sde_plane_atomic_set_property(struct drm_plane *plane,
 {
 	struct sde_plane *psde = plane ? to_sde_plane(plane) : NULL;
 	struct sde_plane_state *pstate;
-	struct drm_property *fod_property;
-	uint64_t fod_val = 0;
 	int idx, ret = -EINVAL;
 
 	SDE_DEBUG_PLANE(psde, "\n");
@@ -4000,25 +3962,11 @@ static int sde_plane_atomic_set_property(struct drm_plane *plane,
 		SDE_ERROR_PLANE(psde, "invalid state\n");
 	} else {
 		pstate = to_sde_plane_state(state);
-		idx = msm_property_index(&psde->property_info,
-				property);
-		if (idx == PLANE_PROP_ZPOS) {
-			if (val & FOD_PRESSED_LAYER_ZORDER) {
-				val &= ~FOD_PRESSED_LAYER_ZORDER;
-				fod_val = 1;
-			}
-
-			fod_property = psde->property_info.
-					property_array[PLANE_PROP_FOD];
-			ret = msm_property_atomic_set(&psde->property_info,
-					&pstate->property_state,
-					fod_property, fod_val);
-			if (ret)
-				SDE_ERROR("failed to set fod prop");
-		}
 		ret = msm_property_atomic_set(&psde->property_info,
 				&pstate->property_state, property, val);
 		if (!ret) {
+			idx = msm_property_index(&psde->property_info,
+					property);
 			switch (idx) {
 			case PLANE_PROP_INPUT_FENCE:
 				_sde_plane_set_input_fence(psde, pstate, val);
@@ -4196,7 +4144,6 @@ static void sde_plane_destroy_state(struct drm_plane *plane,
 	/* remove ref count for fence */
 	if (pstate->input_fence)
 		sde_sync_put(pstate->input_fence);
-	pstate->input_fence = 0;
 
 	/* destroy value helper */
 	msm_property_destroy_state(&psde->property_info, pstate,
@@ -4630,8 +4577,7 @@ struct drm_plane *sde_plane_init(struct drm_device *dev,
 		SDE_ERROR("[%u]SSPP init failed\n", pipe);
 		ret = PTR_ERR(psde->pipe_hw);
 		goto clean_plane;
-	} else if (!psde->pipe_hw || !psde->pipe_hw->cap ||
-					 !psde->pipe_hw->cap->sblk) {
+	} else if (!psde->pipe_hw->cap || !psde->pipe_hw->cap->sblk) {
 		SDE_ERROR("[%u]SSPP init returned invalid cfg\n", pipe);
 		goto clean_sspp;
 	}

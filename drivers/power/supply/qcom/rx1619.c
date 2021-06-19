@@ -4422,12 +4422,6 @@ static int __init rx1619_init(void)
 	hw_version = get_hw_version_platform();
 	printk("rx1619: hw version: %d\n", hw_version);
 
-#ifndef CONFIG_RX_ON_URD
-	printk("is_nvt_rx flag is:%d\n", is_nvt_rx);
-	if (!is_nvt_rx && (hw_version != HARDWARE_PLATFORM_SKULD))
-		return 0;
-#endif
-
 	ret = i2c_add_driver(&rx1619_driver);
 	if (ret)
 		printk(KERN_ERR "rx1619 i2c driver init failed!\n");

@@ -232,6 +232,7 @@ static void sde_encoder_phys_cmd_te_rd_ptr_irq(void *arg, int irq_idx)
 	struct sde_encoder_phys_cmd *cmd_enc;
 	u32 scheduler_status = INVALID_CTL_STATUS;
 	struct sde_hw_ctl *ctl;
+	struct sde_hw_pp_vsync_info info[MAX_CHANNELS_PER_ENC] = {{0}};
 	struct sde_encoder_phys_cmd_te_timestamp *te_timestamp;
 	unsigned long lock_flags;
 
@@ -257,6 +258,14 @@ static void sde_encoder_phys_cmd_te_rd_ptr_irq(void *arg, int irq_idx)
 	}
 	spin_unlock_irqrestore(phys_enc->enc_spinlock, lock_flags);
 
+	sde_encoder_helper_get_pp_line_count(phys_enc->parent, info);
+	SDE_EVT32_IRQ(DRMID(phys_enc->parent),
+		info[0].pp_idx, info[0].intf_idx,
+		info[0].wr_ptr_line_count, info[0].intf_frame_count,
+		info[1].pp_idx, info[1].intf_idx,
+		info[1].wr_ptr_line_count, info[1].intf_frame_count,
+		scheduler_status);
+
 	if (phys_enc->parent_ops.handle_vblank_virt)
 		phys_enc->parent_ops.handle_vblank_virt(phys_enc->parent,
 			phys_enc);
@@ -271,6 +280,7 @@ static void sde_encoder_phys_cmd_wr_ptr_irq(void *arg, int irq_idx)
 	struct sde_encoder_phys *phys_enc = arg;
 	struct sde_hw_ctl *ctl;
 	u32 event = 0;
+	struct sde_hw_pp_vsync_info info[MAX_CHANNELS_PER_ENC] = {{0}};
 
 	if (!phys_enc || !phys_enc->hw_ctl)
 		return;
@@ -287,6 +297,12 @@ static void sde_encoder_phys_cmd_wr_ptr_irq(void *arg, int irq_idx)
 			spin_unlock(phys_enc->enc_spinlock);
 		}
 	}
+
+	sde_encoder_helper_get_pp_line_count(phys_enc->parent, info);
+	SDE_EVT32_IRQ(DRMID(phys_enc->parent),
+		ctl->idx - CTL_0, event,
+		info[0].pp_idx, info[0].intf_idx, info[0].wr_ptr_line_count,
+		info[1].pp_idx, info[1].intf_idx, info[1].wr_ptr_line_count);
 
 	/* Signal any waiting wr_ptr start interrupt */
 	wake_up_all(&phys_enc->pending_kickoff_wq);
@@ -935,7 +951,7 @@ static int _get_tearcheck_threshold(struct sde_encoder_phys *phys_enc,
 
 		if (phys_enc->parent_ops.get_qsync_fps)
 			phys_enc->parent_ops.get_qsync_fps(
-				phys_enc->parent, &qsync_min_fps, 0);
+				phys_enc->parent, &qsync_min_fps);
 
 		if (!qsync_min_fps || !default_fps || !yres) {
 			SDE_ERROR_CMDENC(cmd_enc,
@@ -1165,21 +1181,13 @@ static void sde_encoder_phys_cmd_enable(struct sde_encoder_phys *phys_enc)
 static bool sde_encoder_phys_cmd_is_autorefresh_enabled(
 		struct sde_encoder_phys *phys_enc)
 {
-	struct sde_encoder_phys_cmd *cmd_enc;
 	struct sde_hw_pingpong *hw_pp;
 	struct sde_hw_intf *hw_intf;
 	struct sde_hw_autorefresh cfg;
 	int ret;
 
-	if (!phys_enc)
-		return 0;
-
-	cmd_enc = to_sde_encoder_phys_cmd(phys_enc);
-	if (!cmd_enc->autorefresh.cfg.enable)
-		return 0;
-
-	if (!phys_enc->hw_pp || !phys_enc->hw_intf)
-		return 0;
+	if (!phys_enc || !phys_enc->hw_pp || !phys_enc->hw_intf)
+		return false;
 
 	if (!sde_encoder_phys_cmd_is_master(phys_enc))
 		return false;

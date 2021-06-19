@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
  */
 
 #ifndef __SDE_ENCODER_PHYS_H__
@@ -82,7 +82,7 @@ struct sde_encoder_virt_ops {
 	void (*handle_frame_done)(struct drm_encoder *parent,
 			struct sde_encoder_phys *phys, u32 event);
 	void (*get_qsync_fps)(struct drm_encoder *parent,
-			u32 *qsync_fps, u32 vrr_fps);
+			u32 *qsync_fps);
 };
 
 /**
@@ -523,6 +523,14 @@ void sde_encoder_phys_setup_cdm(struct sde_encoder_phys *phys_enc,
 		struct sde_rect *wb_roi);
 
 /**
+ * sde_encoder_helper_get_pp_line_count - pingpong linecount helper function
+ * @drm_enc:    Pointer to drm encoder structure
+ * @info:       structure used to populate the pp line count information
+ */
+void sde_encoder_helper_get_pp_line_count(struct drm_encoder *drm_enc,
+		struct sde_hw_pp_vsync_info *info);
+
+/**
  * sde_encoder_helper_trigger_flush - control flush helper function
  *	This helper function may be optionally specified by physical
  *	encoders if they require ctl_flush triggering.
@@ -602,26 +610,6 @@ static inline enum sde_3d_blend_mode sde_encoder_helper_get_3d_blend_mode(
 		return BLEND_3D_H_ROW_INT;
 
 	return BLEND_3D_NONE;
-}
-
-/**
- * sde_encoder_phys_is_cwb_disabling - Check if CWB encoder attached to this
- *	 CRTC and it is in SDE_ENC_DISABLING state.
- * @phys_enc: Pointer to physical encoder structure
- * @crtc: drm crtc
- * @Return: true if cwb encoder is in disabling state
- */
-static inline bool sde_encoder_phys_is_cwb_disabling(
-	struct sde_encoder_phys *phys, struct drm_crtc *crtc)
-{
-	struct sde_encoder_phys_wb *wb_enc;
-
-	if (!phys || !phys->in_clone_mode ||
-				phys->enable_state != SDE_ENC_DISABLING)
-		return false;
-
-	wb_enc = container_of(phys, struct sde_encoder_phys_wb, base);
-	return (wb_enc->crtc == crtc) ? true : false;
 }
 
 /**

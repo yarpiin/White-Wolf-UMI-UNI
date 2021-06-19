@@ -348,7 +348,7 @@ int dsi_display_hbm_set_disp_param(struct drm_connector *connector,
 	} else if (op_code == DISPPARAM_HBM_FOD_OFF) {
 		/* close HBM and restore DC */
 		rc = dsi_display_set_disp_param(connector, DISPPARAM_HBM_FOD_OFF);
-	} else if (op_code == DISPPARAM_DIMMING_OFF) {
+	} else if(op_code == DISPPARAM_DIMMING_OFF) {
 		rc = dsi_display_set_disp_param(connector, DISPPARAM_DIMMING_OFF);
 	} else if (op_code == DISPPARAM_HBM_BACKLIGHT_RESEND) {
 		rc = dsi_display_set_disp_param(connector, DISPPARAM_HBM_BACKLIGHT_RESEND);

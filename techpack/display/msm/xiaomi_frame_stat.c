@@ -64,7 +64,7 @@ void calc_fps(u64 duration, int input_event)
 		goto exit;
 	}
 
-	if (!fm_stat.start) {
+	if(!fm_stat.start) {
 		fm_stat.last_sampled_time_us = current_time_us;
 		fm_stat.start = true;
 	}

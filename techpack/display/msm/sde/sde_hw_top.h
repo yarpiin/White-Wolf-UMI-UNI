@@ -304,5 +304,4 @@ void sde_hw_sw_fuse_destroy(struct sde_hw_sw_fuse *sw_fuse);
  * @sw_fuse: sde_hw_sw_fuse
  */
 u32 sde_hw_get_ltm_sw_fuse_value(struct sde_hw_sw_fuse *sw_fuse);
-
 #endif /*_SDE_HW_TOP_H */

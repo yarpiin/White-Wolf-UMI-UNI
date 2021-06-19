@@ -64,8 +64,6 @@
 atomic_t resume_pending;
 wait_queue_head_t resume_wait_q;
 
-static struct kmem_cache *kmem_vblank_work_pool;
-
 static void msm_fb_output_poll_changed(struct drm_device *dev)
 {
 	struct msm_drm_private *priv = NULL;
@@ -321,7 +319,7 @@ static void vblank_ctrl_worker(struct kthread_work *work)
 	else
 		kms->funcs->disable_vblank(kms, priv->crtcs[cur_work->crtc_id]);
 
-	kmem_cache_free(kmem_vblank_work_pool, cur_work);
+	kfree(cur_work);
 }
 
 static int vblank_ctrl_queue_work(struct msm_drm_private *priv,
@@ -334,7 +332,7 @@ static int vblank_ctrl_queue_work(struct msm_drm_private *priv,
 	if (!priv || crtc_id >= priv->num_crtcs)
 		return -EINVAL;
 
-	cur_work = kmem_cache_zalloc(kmem_vblank_work_pool, GFP_ATOMIC);
+	cur_work = kzalloc(sizeof(*cur_work), GFP_ATOMIC);
 	if (!cur_work)
 		return -ENOMEM;
 
@@ -1341,27 +1339,24 @@ static int msm_ioctl_register_event(struct drm_device *dev, void *data,
 	 * calls add to client list and return.
 	 */
 	count = msm_event_client_count(dev, req_event, false);
-	if (count) {
-		/* Add current client to list */
-		spin_lock_irqsave(&dev->event_lock, flag);
-		list_add_tail(&client->base.link, &priv->client_event_list);
-		spin_unlock_irqrestore(&dev->event_lock, flag);
+	/* Add current client to list */
+	spin_lock_irqsave(&dev->event_lock, flag);
+	list_add_tail(&client->base.link, &priv->client_event_list);
+	spin_unlock_irqrestore(&dev->event_lock, flag);
+
+	if (count)
 		return 0;
-	}
 
 	ret = msm_register_event(dev, req_event, file, true);
 	if (ret) {
 		DRM_ERROR("failed to enable event %x object %x object id %d\n",
 			req_event->event, req_event->object_type,
 			req_event->object_id);
-		kfree(client);
-	} else {
-		/* Add current client to list */
 		spin_lock_irqsave(&dev->event_lock, flag);
-		list_add_tail(&client->base.link, &priv->client_event_list);
+		list_del(&client->base.link);
 		spin_unlock_irqrestore(&dev->event_lock, flag);
+		kfree(client);
 	}
-
 	return ret;
 }
 
@@ -1501,13 +1496,6 @@ static int msm_release(struct inode *inode, struct file *filp)
 						false);
 		kfree(node);
 	}
-
-	/**
-	 * Handle preclose operation here for removing fb's whose
-	 * refcount > 1. This operation is not triggered from upstream
-	 * drm as msm_driver does not support DRIVER_LEGACY feature.
-	 */
-	msm_preclose(dev, file_priv);
 
 	return drm_release(inode, filp);
 }
@@ -1669,6 +1657,7 @@ static struct drm_driver msm_driver = {
 				DRIVER_ATOMIC |
 				DRIVER_MODESET,
 	.open               = msm_open,
+	.preclose           = msm_preclose,
 	.postclose          = msm_postclose,
 	.lastclose          = msm_lastclose,
 	.irq_handler        = msm_irq,
@@ -1821,6 +1810,7 @@ static int compare_of(struct device *dev, void *data)
 {
 	return dev->of_node == data;
 }
+
 
 /*
  * Identify what components need to be added by parsing what remote-endpoints
@@ -2084,7 +2074,6 @@ static struct platform_driver msm_platform_driver = {
 		.of_match_table = dt_match,
 		.pm     = &msm_pm_ops,
 		.suppress_bind_attrs = true,
-		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
 	},
 };
 
@@ -2094,7 +2083,6 @@ static int __init msm_drm_register(void)
 		return -EINVAL;
 
 	DBG("init");
-	kmem_vblank_work_pool = KMEM_CACHE(vblank_work, SLAB_HWCACHE_ALIGN | SLAB_PANIC);
 	msm_smmu_driver_init();
 	msm_dsi_register();
 	msm_edp_register();

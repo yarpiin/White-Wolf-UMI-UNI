@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-only
-/* Copyright (c) 2012-2021, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
  */
 
 
@@ -1007,12 +1007,18 @@ static int msm_pcm_capture_copy(struct snd_pcm_substream *substream,
 			xfer = size;
 		offset = prtd->in_frame_info[idx].offset;
 		pr_debug("Offset value = %d\n", offset);
+#ifdef CONFIG_MACH_XIAOMI_SM8250
 		if (size == 0 || size < prtd->pcm_count) {
 			memset(bufptr + offset + size, 0, prtd->pcm_count - size);
 			if (fbytes > prtd->pcm_count)
 				size = xfer = prtd->pcm_count;
 			else
 				size = xfer = fbytes;
+#else
+		if (size == 0 || size < fbytes) {
+			memset(bufptr + offset + size, 0, fbytes - size);
+			size = xfer = fbytes;
+#endif
 		}
 
 		if (copy_to_user(buf, bufptr+offset, xfer)) {

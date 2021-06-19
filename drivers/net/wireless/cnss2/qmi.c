@@ -640,7 +640,6 @@ static int cnss_get_bdf_file_name(struct cnss_plat_data *plat_priv,
 				 BDF_FILE_NAME_PREFIX "%02x.e%02x",
 				 plat_priv->board_info.board_id >> 8 & 0xFF,
 				 plat_priv->board_info.board_id & 0xFF);
-		}
 		break;
 	case CNSS_BDF_BIN:
 		if (plat_priv->board_info.board_id == 0xFF) {
