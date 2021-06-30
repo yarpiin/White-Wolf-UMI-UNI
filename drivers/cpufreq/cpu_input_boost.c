@@ -10,7 +10,7 @@
 #include <linux/input.h>
 #include <linux/kthread.h>
 #include <linux/moduleparam.h>
-#include <linux/msm_drm_notify.h>
+#include <drm/drm_notifier_mi.h>
 #include <linux/slab.h>
 #include <linux/version.h>
 
@@ -75,7 +75,7 @@ struct boost_drv {
 	struct delayed_work input_unboost;
 	struct delayed_work max_unboost;
 	struct notifier_block cpu_notif;
-	struct notifier_block msm_drm_notif;
+	struct notifier_block mi_drm_notif;
 	wait_queue_head_t boost_waitq;
 	atomic_long_t max_boost_expires;
 	unsigned long state;
@@ -294,19 +294,19 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	return NOTIFY_OK;
 }
 
-static int msm_drm_notifier_cb(struct notifier_block *nb, unsigned long action,
+static int mi_drm_notifier_cb(struct notifier_block *nb, unsigned long action,
 			  void *data)
 {
-	struct boost_drv *b = container_of(nb, typeof(*b), msm_drm_notif);
-	struct msm_drm_notifier *evdata = data;
+	struct boost_drv *b = container_of(nb, typeof(*b), mi_drm_notif);
+	struct mi_drm_notifier *evdata = data;
 	int *blank = evdata->data;
 
 	/* Parse framebuffer blank events as soon as they occur */
-	if (action != MSM_DRM_EARLY_EVENT_BLANK)
+	if (action != MI_DRM_EARLY_EVENT_BLANK)
 		return NOTIFY_OK;
 
 	/* Boost when the screen turns on and unboost when it turns off */
-	if (*blank == MSM_DRM_BLANK_UNBLANK_CUST) {
+	if (*blank == MI_DRM_BLANK_UNBLANK ) {
 		clear_bit(SCREEN_OFF, &b->state);
 		__cpu_input_boost_kick_max(b, wake_boost_duration);
 	} else {
@@ -419,11 +419,11 @@ static int __init cpu_input_boost_init(void)
 		goto unregister_cpu_notif;
 	}
 
-	b->msm_drm_notif.notifier_call = msm_drm_notifier_cb;
-	b->msm_drm_notif.priority = INT_MAX;
-	ret = msm_drm_register_client(&b->msm_drm_notif);
+	b->mi_drm_notif.notifier_call = mi_drm_notifier_cb;
+	b->mi_drm_notif.priority = INT_MAX;
+	ret = mi_drm_register_client(&b->mi_drm_notif);
 	if (ret) {
-		pr_err("Failed to register msm_drm notifier, err: %d\n", ret);
+		pr_err("Failed to register mi_drm notifier, err: %d\n", ret);
 		goto unregister_handler;
 	}
 
@@ -437,7 +437,7 @@ static int __init cpu_input_boost_init(void)
 	return 0;
 
 unregister_fb_notif:
-	msm_drm_unregister_client(&b->msm_drm_notif);
+	mi_drm_unregister_client(&b->mi_drm_notif);
 unregister_handler:
 	input_unregister_handler(&cpu_input_boost_input_handler);
 unregister_cpu_notif:
