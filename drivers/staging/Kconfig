@@ -130,4 +130,6 @@ source "drivers/staging/misysinfofreader/Kconfig"
 
 source "drivers/staging/kperfevents/Kconfig"
 
+source "drivers/staging/qcacld-3.0/Kconfig"
+
 endif # STAGING
