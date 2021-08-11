@@ -1,1 +1,1 @@
-obj-m	+= fragmentize.o
+obj-y	+= fragmentize.o
