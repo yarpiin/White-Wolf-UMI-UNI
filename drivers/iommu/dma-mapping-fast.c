@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
  */
 
 #include <linux/dma-contiguous.h>
 #include <linux/dma-mapping.h>
 #include <linux/dma-mapping-fast.h>
+#include <linux/io-pgtable.h>
 #include <linux/io-pgtable-fast.h>
 #include <linux/vmalloc.h>
 #include <asm/cacheflush.h>
@@ -17,8 +18,6 @@
 #include <linux/dma-iommu.h>
 #include <linux/iova.h>
 #include <trace/events/iommu.h>
-
-#include <linux/io-pgtable.h>
 
 /* some redundant definitions... :( TODO: move to io-pgtable-fast.h */
 #define FAST_PAGE_SHIFT		12
@@ -478,7 +477,8 @@ static void fast_smmu_unmap_sg(struct device *dev,
 			break;
 		sg = tmp;
 	}
-	len = sg_dma_address(sg) + sg_dma_len(sg) - start;
+	len = ALIGN(sg_dma_address(sg) + sg_dma_len(sg) - start,
+		    FAST_PAGE_SIZE);
 
 	av8l_fast_unmap_public(mapping->pgtbl_ops, start, len);
 
@@ -1068,6 +1068,7 @@ void fast_smmu_put_dma_cookie(struct iommu_domain *domain)
 	kfree(fast);
 	domain->iova_cookie = NULL;
 }
+EXPORT_SYMBOL_GPL(fast_smmu_put_dma_cookie);
 
 /**
  * fast_smmu_init_mapping
