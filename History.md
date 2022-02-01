@@ -1,4 +1,47 @@
 
+n.n.n / 2022-02-01
+==================
+
+  * defconfig: regen
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/data-kernel into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/fw-api into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/opensource/video-driver into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/kernel/msm-4.19 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * msm: synx: fix copyright
+  * Merge 533e678218e41df69501158ff6eb84deafb6771c on remote branch
+  * Merge "msm: ipa3: fix to cleanup the dma allocation"
+  * Merge "msm: synx: remove synx handle details from logging"
+  * clk: qcom: gpucc: Add support for higher frequency for Khaje
+  * Merge "clk: qcom: vdd-level: Update the VDD levels for Bengal/Khaje"
+  * msm: ipa3: fix to cleanup the dma allocation
+  * Merge "include: qcom,rpm-smd-regulator.h: Add SUPER_TURBO corner"
+  * clk: qcom: vdd-level: Update the VDD levels for Bengal/Khaje
+  * Merge "msm: adsprpc: Handle UAF in fastrpc debugfs read"
+  * include: qcom,rpm-smd-regulator.h: Add SUPER_TURBO corner
+  * Merge "usb: gadget: qdss: Don't clear debug_inface_enabled upon unbind"
+  * usb: gadget: qdss: Don't clear debug_inface_enabled upon unbind
+  * msm: adsprpc: Handle UAF in fastrpc debugfs read
+  * usb: gadget: f_hid: Fix unbind issues
+  * usb: gadget: f_uvc: Fix unbind issues
+  * Merge "clocksource/drivers/arm_arch_timer: Correct fault programming of CNTKCTL_EL1.EVNTI"
+  * msm: synx: remove synx handle details from logging
+  * clocksource/drivers/arm_arch_timer: Correct fault programming of CNTKCTL_EL1.EVNTI
+  * Merge "input: misc: qcom-power-on: Add support to log KPDPWR status"
+  * Merge "msm: kgsl: Fix gpuaddr_in_range() to check upper bound"
+  * mmc: sdhci-msm: Ensure SD card power isn't ON when card removed
+  * Merge "clk: qcom: clk-alpha-pll: Update the steps to slew the Lucid PLL"
+  * msm: kgsl: Fix gpuaddr_in_range() to check upper bound
+  * Merge "usb: max-3421: Prevent corruption of freed memory"
+  * clk: qcom: clk-alpha-pll: Update the steps to slew the Lucid PLL
+  * Merge "regulator: qcom_pm8008-regulator: Avoid deadlock in OCP handling"
+  * Merge "seq_file: disallow extremely large seq buffer allocations"
+  * regulator: qcom_pm8008-regulator: Avoid deadlock in OCP handling
+  * usb: gadget: f_uac1: Add support for UAC1 function
+  * input: misc: qcom-power-on: Add support to log KPDPWR status
+  * usb: max-3421: Prevent corruption of freed memory
+  * seq_file: disallow extremely large seq buffer allocations
+
 n.n.n / 2022-01-08
 ==================
 
