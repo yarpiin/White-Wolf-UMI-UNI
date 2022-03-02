@@ -1,4 +1,95 @@
 
+n.n.n / 2022-03-02
+==================
+
+  * thermal: tsens: remove unused
+  * drivers: arch_topology: wire up thermal limit for arch_scale_max_freq_capacity
+  * net: ipv4: Reduce TCP performance spikes
+  * Merge tag 'LA.UM.9.12.1.r1-00700-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00700-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/fw-api into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00700-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/opensource/video-driver into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00700-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/kernel/msm-4.19 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge d09499e9c8a99763bf9afa92c06601070523dc3e on remote branch
+  * spi: spi-msm-geni: Put device to suspend if PM status is active
+  * Merge "cfg80211: Add support to advertize OCV support"
+  * Merge "spi: spi-msm-geni: Protect from register access in suspend state"
+  * Merge "spi: spi-msm-geni: Keep device to suspend if PM call fails"
+  * cfg80211: Add support to advertize OCV support
+  * msm: kgsl: Reduce latency while processing ioctls
+  * setlocalversion: Never append a "+" to localversion
+  * drivers:block:zram:default lz4
+  * zram: Move default compression algorithm choice to Kconfig
+  * defconfig: enable lz4 compression
+  * defconfigs: disable msm performance
+  * USB: f_fs: Fix disconnect check during ongoing IO
+  * Merge "msm: diag: fix copyright"
+  * Merge "drivers: soc: qcom: Initialize blocking notifier as per lockdep"
+  * msm: diag: fix copyright
+  * Merge "diag: Validate the dci client before sending dci packet"
+  * diag: Validate the dci client before sending dci packet
+  * drivers: soc: qcom: Initialize blocking notifier as per lockdep
+  * version 5
+  * defconfig: regen
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/data-kernel into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/fw-api into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/platform/vendor/opensource/video-driver into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * Merge tag 'LA.UM.9.12.1.r1-00600-SMxx50.QSSI12.0' of https://source.codeaurora.org/quic/la/kernel/msm-4.19 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0
+  * usb: gadget: u_audio: fix race condition on endpoint stop
+  * usb: gadget: u_audio: Free requests only after callback
+  * defconfig: Enable usb peripheral audio on SXR2130
+  * Merge "diag: Ensure dci entry is valid before sending the packet"
+  * Merge "msm: kgsl: Perform cache flush on the pages obtained using get_user_pages()"
+  * msm: ADSPRPC: Fix to avoid Use after free in fastrpc_init_process
+  * Merge "msm: synx: fix copyright"
+  * Merge "msm: ipa3: Fix to validate the NAT table entries during NAT table init"
+  * msm: synx: fix copyright
+  * clk: qcom: vdd-level: Update the vdd level for CX on Khaje
+  * msm: ipa3: Fix to validate the NAT table entries during NAT table init
+  * Merge 533e678218e41df69501158ff6eb84deafb6771c on remote branch
+  * msm: synx: fix copyright
+  * clk: qcom: gpucc: Update the vdd level for CX on Khaje
+  * diag: Ensure dci entry is valid before sending the packet
+  * Merge "usb: pd: Process request message as soon as it is received"
+  * usb: pd: Process request message as soon as it is received
+  * Merge "dfc: reset tx queue"
+  * mmc: sdhci-msm: Update the MGPI SW check to avoid irq timeout
+  * msm: kgsl: Perform cache flush on the pages obtained using get_user_pages()
+  * Merge "msm: ipa3: fix to cleanup the dma allocation"
+  * Merge "msm: synx: remove synx handle details from logging"
+  * dfc: reset tx queue
+  * clk: qcom: gpucc: Add support for higher frequency for Khaje
+  * Merge "clk: qcom: vdd-level: Update the VDD levels for Bengal/Khaje"
+  * msm: ipa3: fix to cleanup the dma allocation
+  * Merge "include: qcom,rpm-smd-regulator.h: Add SUPER_TURBO corner"
+  * clk: qcom: vdd-level: Update the VDD levels for Bengal/Khaje
+  * Merge "msm: adsprpc: Handle UAF in fastrpc debugfs read"
+  * include: qcom,rpm-smd-regulator.h: Add SUPER_TURBO corner
+  * Merge "usb: gadget: qdss: Don't clear debug_inface_enabled upon unbind"
+  * usb: gadget: qdss: Don't clear debug_inface_enabled upon unbind
+  * msm: adsprpc: Handle UAF in fastrpc debugfs read
+  * usb: gadget: f_hid: Fix unbind issues
+  * usb: gadget: f_uvc: Fix unbind issues
+  * Merge "clocksource/drivers/arm_arch_timer: Correct fault programming of CNTKCTL_EL1.EVNTI"
+  * msm: synx: remove synx handle details from logging
+  * clocksource/drivers/arm_arch_timer: Correct fault programming of CNTKCTL_EL1.EVNTI
+  * Merge "input: misc: qcom-power-on: Add support to log KPDPWR status"
+  * Merge "msm: kgsl: Fix gpuaddr_in_range() to check upper bound"
+  * mmc: sdhci-msm: Ensure SD card power isn't ON when card removed
+  * Merge "clk: qcom: clk-alpha-pll: Update the steps to slew the Lucid PLL"
+  * msm: kgsl: Fix gpuaddr_in_range() to check upper bound
+  * Merge "usb: max-3421: Prevent corruption of freed memory"
+  * clk: qcom: clk-alpha-pll: Update the steps to slew the Lucid PLL
+  * spi: spi-msm-geni: Protect from register access in suspend state
+  * spi: spi-msm-geni: Keep device to suspend if PM call fails
+  * Merge "regulator: qcom_pm8008-regulator: Avoid deadlock in OCP handling"
+  * Merge "seq_file: disallow extremely large seq buffer allocations"
+  * regulator: qcom_pm8008-regulator: Avoid deadlock in OCP handling
+  * usb: gadget: f_uac1: Add support for UAC1 function
+  * input: misc: qcom-power-on: Add support to log KPDPWR status
+  * usb: max-3421: Prevent corruption of freed memory
+  * seq_file: disallow extremely large seq buffer allocations
+
 n.n.n / 2022-02-01
 ==================
 
