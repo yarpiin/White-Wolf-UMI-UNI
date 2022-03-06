@@ -752,9 +752,6 @@ And public attribution of xiaomi platforms(like J2 and so and)
 	status = "ok";
 	aw8697_haptic@5A {
 		compatible = "awinic,aw8697_haptic";
-		vib_bst_vol_default = < 0x0c >;
-		vib_bst_vol_ram = < 0x0c >;
-		vib_bst_vol_rtp = < 0x0c >;
 		status = "ok";
 	};
 };
