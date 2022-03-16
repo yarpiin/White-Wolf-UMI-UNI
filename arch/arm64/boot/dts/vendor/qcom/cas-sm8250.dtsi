@@ -354,8 +354,8 @@ And public attribution of xiaomi platforms(like cas and so and)
 	qcom,chg-term-current-ma = <(-220)>;
 	qcom,step-charging-enable;
 	qcom,sw-jeita-enable;
-	qcom,chg-warm-th= <450>;
-	qcom,chg-cool-th= <150>;
+	qcom,chg-warm-th= <430>;
+	qcom,chg-cool-th= <200>;
 	//qcom,suspend-input-on-debug-batt;
 	qcom,usbpd-phandle = <&pm8150b_pdphy>;
 	qcom,battery-data = <&cas_batterydata>;

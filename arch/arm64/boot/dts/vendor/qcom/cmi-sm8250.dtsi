@@ -64,7 +64,7 @@ this file is for attribution only of cmi
 		mi,step-charge-high-vol-curr-max = <4400>;
 		mi,cell-vol-high-threshold-mv = <4448>;
 		mi,cell-vol-max-threshold-mv = <4477>;
-		mi,pd-battery-warm-th = <480>;
+		mi,pd-battery-warm-th = <450>;
 		mi,cp-sec-enable;
 	};
 
