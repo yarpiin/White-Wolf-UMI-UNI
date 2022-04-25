@@ -5279,3 +5279,21 @@ int dsi_panel_apply_hbm_mode(struct dsi_panel *panel)
 
 	return rc;
 }
+
+int dsi_panel_set_dc(struct dsi_panel *panel, bool status){
+    int rc = 0;
+
+	if (status) {
+		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_MI_DC_ON);
+		if (rc)
+			pr_err("[%s] failed to send DSI_CMD_SET_MI_DC_ON cmd, rc=%d\n",
+					panel->name, rc);
+	} else {
+		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_MI_DC_OFF);
+		if (rc)
+			pr_err("[%s] failed to send DSI_CMD_SET_MI_DC_OFF cmd, rc=%d\n",
+					panel->name, rc);
+	}
+
+	return rc;
+}
