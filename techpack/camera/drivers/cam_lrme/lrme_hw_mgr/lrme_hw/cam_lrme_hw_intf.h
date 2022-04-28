@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _CAM_LRME_HW_INTF_H_
@@ -59,14 +60,12 @@ enum cam_lrme_cb_type {
  * @CAM_LRME_HW_CMD_REGISTER_CB       : register HW manager callback
  * @CAM_LRME_HW_CMD_SUBMIT            : Submit frame to HW
  * @CAM_LRME_HW_CMD_DUMP_REGISTER     : dump register values
- * @CAM_LRME_HW_CMD_DUMP              : dump register values to buffer
  */
 enum cam_lrme_hw_cmd_type {
 	CAM_LRME_HW_CMD_PREPARE_HW_UPDATE,
 	CAM_LRME_HW_CMD_REGISTER_CB,
 	CAM_LRME_HW_CMD_SUBMIT,
 	CAM_LRME_HW_CMD_DUMP_REGISTER,
-	CAM_LRME_HW_CMD_DUMP,
 };
 
 /**
@@ -89,7 +88,6 @@ enum cam_lrme_hw_reset_type {
  * @hw_device             : Pointer to HW device
  * @hw_update_entries     : List of hw_update_entries
  * @num_hw_update_entries : number of hw_update_entries
- * @submit_timestamp      : timestamp of submitting request with hw
  */
 struct cam_lrme_frame_request {
 	struct list_head           frame_list;
@@ -98,7 +96,6 @@ struct cam_lrme_frame_request {
 	struct cam_lrme_device    *hw_device;
 	struct cam_hw_update_entry hw_update_entries[CAM_LRME_MAX_HW_ENTRIES];
 	uint32_t                   num_hw_update_entries;
-	ktime_t                    submit_timestamp;
 };
 
 /**
@@ -194,21 +191,6 @@ struct cam_lrme_hw_submit_args {
 	struct cam_hw_update_entry    *hw_update_entries;
 	uint32_t            num_hw_update_entries;
 	struct cam_lrme_frame_request *frame_req;
-};
-
-/**
- * struct cam_lrme_hw_dump_args : Args for dump request
- *
- * @request_id   : Issue request id
- * @cpu_addr     : start address of the target buffer
- * @offset       : offset of the buffer
- * @buf_len      : Length of target buffer
- */
-struct cam_lrme_hw_dump_args {
-	uint64_t  request_id;
-	uintptr_t cpu_addr;
-	size_t    offset;
-	size_t    buf_len;
 };
 
 #endif /* _CAM_LRME_HW_INTF_H_ */

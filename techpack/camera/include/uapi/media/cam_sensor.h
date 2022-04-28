@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
 /*
- * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef __UAPI_CAM_SENSOR_H__
@@ -118,11 +119,12 @@ struct cam_ois_opcode {
 	uint32_t coeff;
 	uint32_t pheripheral;
 	uint32_t memory;
-	uint8_t  fw_addr_type;
-	uint8_t  is_addr_increase;
-	uint8_t  is_addr_indata;
-	uint8_t  fwversion;
-	uint32_t fwchecksumsize;
+	uint32_t ois_get_data;
+	uint8_t  fw_addr_type; //Xiaomi add
+	uint8_t  is_addr_increase; //Xiaomi add
+	uint8_t  is_addr_indata; //Xiaomi add
+        uint8_t  fwversion;
+        uint32_t fwchecksumsize;
 	uint32_t fwchecksum;
 } __attribute__((packed));
 
@@ -144,7 +146,7 @@ struct cam_cmd_ois_info {
 	uint8_t               cmd_type;
 	uint8_t               ois_fw_flag;
 	uint8_t               is_ois_calib;
-	uint8_t               is_ois_pre_init;
+	uint8_t               is_ois_pre_init; //xiaomi add
 	char                  ois_name[MAX_OIS_NAME_SIZE];
 	struct cam_ois_opcode opcode;
 } __attribute__((packed));
@@ -342,8 +344,7 @@ struct cam_cmd_unconditional_wait {
  * @3phase        : Details whether 3Phase / 2Phase operation
  * @settle_time   : Settling time in ms
  * @data_rate     : Data rate
- * @mipi_flags    : Mipi flags mask
- * @reserved
+ *
  */
 struct cam_csiphy_info {
 	uint16_t    lane_mask;
@@ -354,8 +355,6 @@ struct cam_csiphy_info {
 	uint8_t     secure_mode;
 	uint64_t    settle_time;
 	uint64_t    data_rate;
-	uint32_t    mipi_flags;
-	uint32_t    reserved;
 } __attribute__((packed));
 
 /**

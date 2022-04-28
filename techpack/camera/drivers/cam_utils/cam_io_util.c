@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2011-2014, 2017-2018, The Linux Foundation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * All rights reserved.
  */
 
@@ -265,8 +266,8 @@ int cam_io_dump(void __iomem *base_addr, uint32_t start_offset, int size)
 			p_str += 11;
 		}
 		data = readl_relaxed(base_addr + REG_OFFSET(start_offset, i));
-		snprintf(p_str, 10, "%08x  ", data);
-		p_str += 9;
+		snprintf(p_str, 9, "%08x ", data);
+		p_str += 8;
 		if ((i + 1) % NUM_REGISTER_PER_LINE == 0) {
 			CAM_ERR(CAM_UTIL, "%s", line_str);
 			line_str[0] = '\0';

@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _CAM_CUSTOM_CSID_480_H_
@@ -56,7 +57,7 @@ static struct cam_ife_csid_udi_reg_offset
 	.csid_udi_byte_cntr_pong_addr             = 0x2e4,
 	/* configurations */
 	.ccif_violation_en                        = 1,
-	.overflow_ctrl_en                         = 0,
+	.overflow_ctrl_en                         = 1,
 };
 
 static struct cam_ife_csid_udi_reg_offset
@@ -105,7 +106,7 @@ static struct cam_ife_csid_udi_reg_offset
 	.csid_udi_byte_cntr_pong_addr             = 0x3e4,
 	/* configurations */
 	.ccif_violation_en                        = 1,
-	.overflow_ctrl_en                         = 0,
+	.overflow_ctrl_en                         = 1,
 };
 
 static struct cam_ife_csid_udi_reg_offset
@@ -155,7 +156,7 @@ static struct cam_ife_csid_udi_reg_offset
 	.csid_udi_byte_cntr_pong_addr             = 0x4e4,
 	/* configurations */
 	.ccif_violation_en                        = 1,
-	.overflow_ctrl_en                         = 0,
+	.overflow_ctrl_en                         = 1,
 };
 
 static struct cam_ife_csid_csi2_rx_reg_offset

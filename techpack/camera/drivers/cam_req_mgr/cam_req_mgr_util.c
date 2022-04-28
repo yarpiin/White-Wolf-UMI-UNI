@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #define pr_fmt(fmt) "CAM-REQ-MGR_UTIL %s:%d " fmt, __func__, __LINE__
@@ -53,8 +54,7 @@ int cam_req_mgr_util_init(void)
 		goto bitmap_alloc_fail;
 	}
 	hdl_tbl->bits = bitmap_size * BITS_PER_BYTE;
-
-	hdl_count = 0;
+        hdl_count = 0;
 	return rc;
 
 bitmap_alloc_fail:
@@ -123,7 +123,6 @@ static int32_t cam_get_free_handle_index(void)
 	}
 
 	set_bit(idx, hdl_tbl->bitmap);
-
 	hdl_count++;
 	return idx;
 }

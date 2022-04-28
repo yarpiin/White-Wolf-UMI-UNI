@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #if !defined(_CAM_TRACE_H) || defined(TRACE_HEADER_MULTI_READ)
@@ -60,29 +61,6 @@ TRACE_EVENT(cam_isp_activated_irq,
 		"ISP: IRQ ctx=%p ctx_state=%u substate=%u event=%u ts=%llu",
 			__entry->ctx, __entry->state, __entry->substate,
 			__entry->event, __entry->ts
-	)
-);
-
-TRACE_EVENT(cam_log_event,
-	TP_PROTO(const char *string1, const char *string2,
-		uint64_t val1, uint64_t val2),
-	TP_ARGS(string1, string2, val1, val2),
-	TP_STRUCT__entry(
-		__string(string1, string1)
-		__string(string2, string2)
-		__field(uint64_t, val1)
-		__field(uint64_t, val2)
-	),
-	TP_fast_assign(
-		__assign_str(string1, string1);
-		__assign_str(string2, string2);
-		__entry->val1 = val1;
-		__entry->val2 = val2;
-	),
-	TP_printk(
-		"%s: %s val1=%llu val2=%llu",
-			__get_str(string1), __get_str(string2),
-			__entry->val1, __entry->val2
 	)
 );
 

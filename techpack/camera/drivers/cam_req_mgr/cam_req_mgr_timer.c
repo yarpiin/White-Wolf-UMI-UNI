@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2018, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include "cam_req_mgr_timer.h"
 #include "cam_debug_util.h"
-
-extern struct kmem_cache *g_cam_req_mgr_timer_cachep;
 
 void crm_timer_reset(struct cam_req_mgr_timer *crm_timer)
 {

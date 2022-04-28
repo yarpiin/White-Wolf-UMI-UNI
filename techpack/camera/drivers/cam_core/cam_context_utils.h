@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _CAM_CONTEXT_UTILS_H_
@@ -30,6 +31,5 @@ int32_t cam_context_dump_pf_info_to_hw(struct cam_context *ctx,
 	struct cam_packet *packet, unsigned long iova, uint32_t buf_info,
 	bool *mem_found);
 int32_t cam_context_dump_hw_acq_info(struct cam_context *ctx);
-int32_t cam_context_dump_dev_to_hw(struct cam_context *ctx,
-	struct cam_dump_req_cmd *cmd);
+
 #endif /* _CAM_CONTEXT_UTILS_H_ */
