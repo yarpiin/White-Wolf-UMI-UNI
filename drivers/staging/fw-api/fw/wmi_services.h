@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2011-2022 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2011-2021 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -574,6 +575,14 @@ typedef  enum  {
     WMI_SERVICE_MULTIPLE_PEER_GROUP_CMD_SUPPORT = 322, /* FW support for multiple peer group command */
     WMI_SERVICE_AFC_RESET_SUPPORT = 323, /* Indicates FW supports AFC reset */
     WMI_SERVICE_FP_PHY_ERR_FILTER_SUPPORT = 324, /* FW supports monitor ring configurations for filtering in PHY error packets */
+    WMI_IS_RADAR_FOUND_CHAN_FREQ_IS_CENTER_FREQ = 325, /* FW Supporting radar event on the actual center frequency radar was detected */
+    WMI_SERVICE_BIOS_SAR_SUPPORT = 326, /* FW support for SAR parameter stored in BIOS */
+    WMI_SERVICE_REO_QREF_SUPPORT = 327, /* FW supports REO QREF */
+    WMI_SERVICE_DELETE_ALL_PEER_BITMAP_SUPPORT = 328, /* target supports cmd to delete all specific peer type within a vdev */
+    WMI_SERVICE_PN_REPLAY_CHECK_SUPPORT = 329, /* FW support to check RX mgmt frames has invalid PN in packets */
+    WMI_SERVICE_COMBINED_SET_PARAM_SUPPORT = 330, /* FW Supporting set param cmd combined for multiple params */
+    WMI_SERVICE_PDEV_RSSI_DBM_CONV_EVENT_SUPPORT = 331, /* FW supports advertising RSSI dB to dBm conversion params to host via WMI_PDEV_RSSI_DBM_CONVERSION_PARAMS_INFO_EVENTID */
+    WMI_SERVICE_PDEV_TELEMETRY_STATS_SUPPORT = 332,
 
     WMI_MAX_EXT2_SERVICE
 
