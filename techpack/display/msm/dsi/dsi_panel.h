@@ -240,8 +240,8 @@ struct dsi_panel {
 	u32 fod_dim_lut_count;
 
 	int hbm_mode;
+	bool resend_ea;
 	bool resend_ea_hbm;
-
 };
 
 static inline bool dsi_panel_ulps_feature_enabled(struct dsi_panel *panel)
