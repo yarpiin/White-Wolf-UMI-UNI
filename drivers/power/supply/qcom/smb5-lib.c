@@ -3653,9 +3653,9 @@ int smblib_set_prop_battery_charging_enabled(struct smb_charger *chg,
 				vote(chg->usb_icl_votable, MAIN_CHG_SUSPEND_VOTER,
 						true, icl);
 		}
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
-		schedule_delayed_work(&chg->reduce_fcc_work,
-			msecs_to_jiffies(ESR_WORK_TIME_97S));
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
+			schedule_delayed_work(&chg->reduce_fcc_work,
+				msecs_to_jiffies(ESR_WORK_TIME_97S));
 #endif
 
 	} else {
@@ -3665,7 +3665,7 @@ int smblib_set_prop_battery_charging_enabled(struct smb_charger *chg,
 		else
 			vote(chg->usb_icl_votable, MAIN_CHG_SUSPEND_VOTER,
 						false, 0);
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 		if (is_client_vote_enabled(chg->fcc_votable, ESR_WORK_VOTER))
 			vote(chg->fcc_votable, ESR_WORK_VOTER, false, 0);
 		cancel_delayed_work_sync(&chg->reduce_fcc_work);
@@ -4459,7 +4459,7 @@ int smblib_disable_hw_jeita(struct smb_charger *chg, bool disable)
 	 * Disable h/w base JEITA compensation if s/w JEITA is enabled
 	 */
 	 /*J1 use ti gauge disable all hard jeita, J2 use qcom default jeita */
-#if (defined CONFIG_FUEL_GAUGE_BQ27Z561) || (defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifdef CONFIG_FUEL_GAUGE_BQ27Z561
 	mask = 0xFF;
 #else
 	mask = JEITA_EN_COLD_SL_FCV_BIT
@@ -7958,7 +7958,7 @@ unlock:
 	mutex_unlock(&chg->typec_lock);
 }
 
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 #define REDUCED_CURRENT		1000000
 #define REDUCED_CURRENT_LOW		500000
 #define FCC_LOW_FOR_ESR_THR		3000000
@@ -8327,7 +8327,7 @@ void smblib_usb_plugin_locked(struct smb_charger *chg)
 			smblib_hvdcp_detect_enable(chg, false);
 			chg->cc_un_compliant_detected = false;
 		}
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 		cancel_delayed_work_sync(&chg->reduce_fcc_work);
 		vote(chg->fcc_votable, ESR_WORK_VOTER, false, 0);
 #endif
@@ -12233,7 +12233,7 @@ int smblib_init(struct smb_charger *chg)
 					smblib_typec_role_check_work);
 	INIT_DELAYED_WORK(&chg->reg_work, smblib_reg_work);
 	INIT_DELAYED_WORK(&chg->thermal_setting_work, smblib_thermal_setting_work);
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 	INIT_DELAYED_WORK(&chg->reduce_fcc_work, reduce_fcc_work);
 #endif
 	INIT_DELAYED_WORK(&chg->charger_type_recheck, smblib_charger_type_recheck);
@@ -12294,7 +12294,7 @@ int smblib_init(struct smb_charger *chg)
 	chg->cp_reason = POWER_SUPPLY_CP_NONE;
 	chg->thermal_status = TEMP_BELOW_RANGE;
 	chg->pps_thermal_level = -EINVAL;
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 	chg->esr_work_status = ESR_CHECK_FCC_NOLIMIT;
 #endif
 	chg->typec_irq_en = true;
@@ -12429,7 +12429,7 @@ int smblib_deinit(struct smb_charger *chg)
 		cancel_delayed_work_sync(&chg->six_pin_batt_step_chg_work);
 		cancel_delayed_work_sync(&chg->pr_swap_detach_work);
 		cancel_delayed_work_sync(&chg->reg_work);
-#if (!defined CONFIG_FUEL_GAUGE_BQ27Z561) && (!defined CONFIG_DUAL_FUEL_GAUGE_BQ27Z561)
+#ifndef CONFIG_FUEL_GAUGE_BQ27Z561
 		cancel_delayed_work_sync(&chg->reduce_fcc_work);
 #endif
 		cancel_delayed_work_sync(&chg->charger_type_recheck);
