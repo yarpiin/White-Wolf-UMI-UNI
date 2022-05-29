@@ -1,4 +1,29 @@
 
+n.n.n / 2022-05-29
+==================
+
+  * techpack: display:  Implement doze mode
+  * techpack: display: remove stock doze implementation
+  * power: supply: revert caf upstream changes
+  * kernel: power: Entirely checkout to msm-5.4
+  * kernel: power: Checkout to msm-5.4
+  * drivers: soc: qcom: Checkout to msm-5.4
+  * arm64: dts: umi: optimise battery charging further
+  * Revert "ARM64: dts: Disable Xiaomi FOD dimlayer impl"
+  * msm: camera: Remove nonsensical register reads in cam_vfe_fe_reg_dump()
+  * msm: camera: Fix memory leak in cam_res_mgr_probe()
+  * msm-camera: Unmap secure buffers in secure usecase
+  * mbcache: Speed up cache entry creation
+  * arm64: select HAVE_MOVE_PMD for faster mremap
+  * mm: speed up mremap by 20x on large regions
+  * ARM64: kona/lito: Optimize FOD HBM to fix fod flashing
+  * smb5: report fast charging when a proprietary charger is attached
+  * techpack: display: temporary disable DC dimming when in fod_hbm mode
+  * techpack: display: temporary disable DC dimming when in hbm mode
+  * techpack: display: adapt exposure adjustment methods to sm8250
+  * techpack: display: Let exposure adjustment switchable via sysfs
+  * techpack: display: Introduce exposure adjustment driver
+
 n.n.n / 2022-05-03
 ==================
 
