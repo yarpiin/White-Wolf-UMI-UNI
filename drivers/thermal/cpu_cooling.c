@@ -159,7 +159,6 @@ static int cpufreq_thermal_notifier(struct notifier_block *nb,
 							clipped_freq);
 		break;
 	}
-
 	mutex_unlock(&cooling_list_lock);
 
 	return NOTIFY_OK;
@@ -426,7 +425,6 @@ static int cpufreq_set_cur_state(struct thermal_cooling_device *cdev,
 							clip_freq);
 	else
 		cpufreq_update_policy(cpufreq_cdev->policy->cpu);
-
 	return 0;
 }
 
