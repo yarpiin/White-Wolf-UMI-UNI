@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _CAM_REQ_MGR_TIMER_H_
@@ -63,5 +62,4 @@ int crm_timer_init(struct cam_req_mgr_timer **timer,
  */
 void crm_timer_exit(struct cam_req_mgr_timer **timer);
 
-extern struct kmem_cache *g_cam_req_mgr_timer_cachep;
 #endif

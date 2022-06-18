@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  *  Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- *  Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _HFI_DEFS_H_
@@ -37,6 +36,7 @@
 #define HFI_ERR_SYS_UNSUPPORT_CMD       (HFI_COMMON_BASE + 0x4)
 #define HFI_ERR_SYS_CMDFAILED           (HFI_COMMON_BASE + 0x5)
 #define HFI_ERR_SYS_CMDSIZE             (HFI_COMMON_BASE + 0x6)
+#define HFI_ERR_SYS_RESET_FAILURE       (HFI_COMMON_BASE + 0x7)
 
 /* System Level Event types */
 #define HFI_EVENT_SYS_ERROR             (HFI_COMMON_BASE + 0x1)
@@ -82,6 +82,12 @@
 #define CAMERAICP_EABORTED             10
 #define CAMERAICP_EHWVIOLATION         11
 #define CAMERAICP_ECDMERROR            12
+
+/* HFI Specific errors. */
+#define CAMERAICP_HFI_ERR_COMMAND_SIZE 1000
+#define CAMERAICP_HFI_ERR_MESSAGE_SIZE 1001
+#define CAMERAICP_HFI_QUEUE_EMPTY      1002
+#define CAMERAICP_HFI_QUEUE_FULL       1003
 
 /* Core level commands */
 /* IPE/BPS core Commands */

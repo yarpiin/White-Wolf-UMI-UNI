@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/device.h>
@@ -135,7 +134,6 @@ uint32_t cam_fd_soc_register_read(struct cam_hw_soc_info *soc_info,
 
 	return reg_value;
 }
-
 
 int cam_fd_soc_enable_resources(struct cam_hw_soc_info *soc_info)
 {

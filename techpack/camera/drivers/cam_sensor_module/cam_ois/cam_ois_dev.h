@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
- * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2021 XiaoMi, Inc.
+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 #ifndef _CAM_OIS_DEV_H_
 #define _CAM_OIS_DEV_H_
@@ -28,6 +27,7 @@
 
 #define ENABLE_OIS_EIS
 #define OIS_DATA_ADDR 0x8A
+#define OIS_TELE_DATA_ADDR 0x1100
 
 enum cam_ois_state {
 	CAM_OIS_INIT,
@@ -85,12 +85,18 @@ struct cam_ois_intf_params {
 	struct cam_req_mgr_kmd_ops ops;
 	struct cam_req_mgr_crm_cb *crm_cb;
 };
+
 #ifdef ENABLE_OIS_EIS
 struct ois_data_eis_t {
-    uint64_t data_timestamp;
-    uint8_t  data[52];
+	uint64_t data_timestamp;
+	uint8_t  data[52];
+};
+struct ois_tele_data_eis_t {
+	uint64_t data_timestamp;
+	uint8_t  data[48];
 };
 #endif
+
 /**
  * struct cam_ois_ctrl_t - OIS ctrl private data
  * @device_name     :   ois device_name
@@ -133,10 +139,12 @@ struct cam_ois_ctrl_t {
 	uint8_t ois_fw_flag;
 	uint8_t is_ois_calib;
 	struct cam_ois_opcode opcode;
-	struct i2c_settings_array i2c_pre_init_data; //xiaomi add
-	uint8_t is_ois_pre_init; //xiaomi add
+	uint32_t open_cnt;
+	struct i2c_settings_array i2c_pre_init_data;
+	uint8_t is_ois_pre_init;
 #ifdef ENABLE_OIS_EIS
 	struct ois_data_eis_t ois_data;
+	struct ois_tele_data_eis_t ois_tele_data;
 #endif
 };
 

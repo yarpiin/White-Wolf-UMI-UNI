@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
- * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include "cam_subdev.h"
@@ -54,8 +53,10 @@ static long cam_subdev_ioctl(struct v4l2_subdev *sd, unsigned int cmd,
 
 	switch (cmd) {
 	case VIDIOC_CAM_CONTROL:
+		cam_req_mgr_rwsem_read_op(CAM_SUBDEV_LOCK);
 		rc = cam_node_handle_ioctl(node,
 			(struct cam_control *) arg);
+		cam_req_mgr_rwsem_read_op(CAM_SUBDEV_UNLOCK);
 		break;
 	default:
 		CAM_ERR(CAM_CORE, "Invalid command %d for %s", cmd,

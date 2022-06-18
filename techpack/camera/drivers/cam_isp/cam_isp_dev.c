@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/delay.h>
@@ -51,9 +50,13 @@ static const struct of_device_id cam_isp_dt_match[] = {
 static int cam_isp_subdev_open(struct v4l2_subdev *sd,
 	struct v4l2_subdev_fh *fh)
 {
+	cam_req_mgr_rwsem_read_op(CAM_SUBDEV_LOCK);
+
 	mutex_lock(&g_isp_dev.isp_mutex);
 	g_isp_dev.open_cnt++;
 	mutex_unlock(&g_isp_dev.isp_mutex);
+
+	cam_req_mgr_rwsem_read_op(CAM_SUBDEV_UNLOCK);
 
 	return 0;
 }
