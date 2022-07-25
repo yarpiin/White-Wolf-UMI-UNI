@@ -162,7 +162,9 @@
 
 #define SMEM_IMAGE_VERSION_TABLE	469
 #define SMEM_HW_SW_BUILD_ID		137
+#ifdef CONFIG_MACH_XIAOMI_SM8250
 #define SMEM_ID_VENDOR1                 135
+#endif
 enum msm_cpu {
 	MSM_CPU_UNKNOWN = 0,
 	MSM_CPU_8960,
@@ -228,6 +230,7 @@ enum pmic_model {
 	PMIC_MODEL_UNKNOWN	= 0xFFFFFFFF
 };
 
+#ifdef CONFIG_MACH_XIAOMI_SM8250
 #define HARDWARE_PLATFORM_UNKNOWN 0
 #define HARDWARE_PLATFORM_CMI  1
 #define HARDWARE_PLATFORM_UMI  2
@@ -268,6 +271,7 @@ uint32_t get_hw_version_major(void);
 uint32_t get_hw_version_minor(void);
 uint32_t get_hw_version_build(void);
 const char *product_name_get(void);
+#endif
 
 enum msm_cpu socinfo_get_msm_cpu(void);
 uint32_t socinfo_get_id(void);
