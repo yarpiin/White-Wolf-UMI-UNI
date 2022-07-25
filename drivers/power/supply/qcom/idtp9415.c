@@ -1780,7 +1780,6 @@ static void idtp9220_chg_detect_work(struct work_struct *work)
 
 #define BPP_QC_7W_CURRENT 700000
 #define BPP_DEFAULT_CURRENT 800000
-#define THYME_BPP_DEFAULT_CURRENT 700000
 #define EPP_DEFAULT_SWITCH_CURRENT 1800000
 #define EPP_DEFAULT_BYPASS_CURRENT 850000
 #define DEFAULT_40V_PSNS_CURRENT 100000
@@ -1821,46 +1820,17 @@ static void idtp9220_bpp_connect_load_work(struct work_struct *work)
 	struct idtp9220_device_info *di =
 		container_of(work, struct idtp9220_device_info,
 				bpp_connect_load_work.work);
+#ifdef CONFIG_FACTORY_BUILD
+	dev_info(di->dev, "[idt] factory build %s: \n", __func__);
+	idtp922x_set_pmi_icl(di, BPP_DEFAULT_CURRENT / 3);
+	msleep(300);
+	idtp922x_set_pmi_icl(di, (BPP_DEFAULT_CURRENT / 3) * 2);
+	msleep(300);
+	idtp922x_set_pmi_icl(di, BPP_DEFAULT_CURRENT);
+#else
 	int bpp_icl = 0;
 	int i = 0;
 	int vol = 0;
-#ifdef CONFIG_RX1619_REMOVE
-	int icl_max = THYME_BPP_DEFAULT_CURRENT;
-
-        for (i = 0; i <= 13; i++) {
-                bpp_icl = (50000 + 50000*i);
-                if (bpp_icl > icl_max)
-                        bpp_icl = icl_max;
-                idtp922x_set_pmi_icl(di, bpp_icl);
-                msleep(500);
-                vol = idtp9220_get_vout(di);
-                if (vol < 5700) {
-                        msleep(100);
-                        vol = idtp9220_get_vout(di);
-                        if (vol < 5700)
-                                icl_max = 450000;
-                }
-                if (vol >= 5300) {
-                        continue;
-                }
-                else if (vol >= 5200) {
-                        bpp_icl -= 50000;
-                        if (bpp_icl < 0)
-                                bpp_icl = 0;
-                } else {
-                        di->bpp_icl = (bpp_icl - 100000);
-                        if (di->bpp_icl <= 0)
-                                di->bpp_icl = 100000;
-                        idtp922x_set_pmi_icl(di, di->bpp_icl);
-                        return;
-                }
-        }
-
-        if (i > 13)
-                di->bpp_icl = icl_max;
-        return;
-
-#else
 	int icl_max = BPP_DEFAULT_CURRENT;
 
 	for (i = 0; i <= 15; i++) {
@@ -3295,6 +3265,7 @@ static void idtp9220_fw_download_work(struct work_struct *work)
 			&& fw_app_ver[0] >= FW_VERSION) && (crc_ok)){
 			dev_info(di->dev, "FW: 0x%x, crc: %d so skip upgrade\n", fw_app_ver[0], crc_ok);
 		} else {
+#ifndef CONFIG_FACTORY_BUILD
 			idtp9220_set_reverse_gpio(di, true);
 			msleep(100);
 			dev_info(di->dev, "%s: FW download start\n", __func__);
@@ -3313,6 +3284,9 @@ static void idtp9220_fw_download_work(struct work_struct *work)
 			else
 				dev_info(di->dev, "crc verify success.\n");
 			idtp9220_set_reverse_gpio(di, false);
+#else
+			dev_info(di->dev, "%s: factory build, don't update\n", __func__);
+#endif
 		}
 		di->fw_update = false;
 		pm_relax(di->dev);
