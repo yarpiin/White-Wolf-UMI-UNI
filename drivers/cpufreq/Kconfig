@@ -362,6 +362,13 @@ config CPU_FREQ_IDLE_PERFP
 
 endif
 
+config CPUFREQ_GOV_SCHEDUTILX_TARGET_LOAD
+	bool "'schedutil' extra function"
+	default n
+	depends on CPU_FREQ_GOV_SCHEDUTIL
+	help
+	  This will provide a new parameter called "target loads".
+
 comment "CPU frequency scaling drivers"
 
 config CPUFREQ_DT
