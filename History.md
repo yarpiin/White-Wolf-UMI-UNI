@@ -1,4 +1,483 @@
 
+n.n.n / 2022-08-13
+==================
+
+  * Merge tag 'LA.UM.9.12.r1-14500-SMxx50.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/fw-api into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14500-SMxx50.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/qcacld-3.0 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14500-SMxx50.0' of https://git.codelinaro.org/clo/la/kernel/msm-4.19 into LA.UM.9.12.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * cnss2: Avoid race condition between time sync and system suspend
+  * cnss2: Make sure the write to remap window register take effect
+  * touchscreen: nt36672c: Return 0 if allocation fails in test_buff_init
+  * touchscreen: nt36672c: Fix unable to set xiaomi touch interface mode
+  * touchscreen: goodix_driver_gt9886: Fix memory leak in goodix_cfg_bin_proc
+  * input: misc: aw8697: Fix memory leak in aw8697_file_write
+  * disp: msm: Revert all panel power state modification changes
+  * defconfig: disable msm performance & core ctl
+  * kernel: time: reduce ntp wakeups
+  * qmi_rmnet: Do not use alarm timer for DFC
+  * Merge 523e8bfd6e7680cc5b3916fac9bad18bdf9e5d20 on remote branch
+  * version 14
+  * scripts/Makefile.lib: Speed up build process
+  * cpufreq: Ensure the minimal frequency is lower than the maximal frequency
+  * scsi: ufs: Guard `ufs_qcom_parse_lpm` for UMI
+  * techpack: display: dsi_phy: Force allow panel phy power off
+  * techpack: display: dsi_panel: Force enable Ultra-Low Power State feature for all panel
+  * version 13
+  * gup: document and work around "COW can break either way" issue
+  * power_supply: don't allocate attrname
+  * regulator: Retry read and write i2c operations on failure
+  * version 12
+  * arm64: dts: kona: Switch to step-wise thermal governor
+  * BACKPORT: msm: kgsl: Add support for KGSL_PROP_VK_DEVICE_ID
+  * BACKPORT: msm: kgsl: Add a property to query gpu model name
+  * BACKPORT: msm: kgsl: Add support to get gpu model from device tree
+  * version 11
+  * rmnet_ipa: Fix netdev watchdog triggering on suspend
+  * msm: ipa: Do not acquire wakelocks
+  * defconfig: Enable ExFAT
+  * exfat: initialize content to avoid warn
+  * BACKPORT: fs: add sync_blockdev_range()
+  * BACKPORT: exfat: reduce block requests when zeroing a cluster
+  * BACKPORT: exfat: introduce mount option 'sys_tz'
+  * BACKPORT: exfat: fix referencing wrong parent directory information after renaming
+  * BACKPORT: exfat: do not clear VolumeDirty in writeback
+  * BACKPORT: exfat: allow access to paths with trailing dots
+  * BACKPORT: exfat: fix missing REQ_SYNC in exfat_update_bhs()
+  * BACKPORT: exfat: remove argument 'sector' from exfat_get_dentry()
+  * BACKPORT: exfat: move super block magic number to magic.h
+  * BACKPORT: exfat: fix i_blocks for files truncated over 4 GiB
+  * BACKPORT: exfat: reuse exfat_inode_info variable instead of calling EXFAT_I()
+  * BACKPORT: exfat: make exfat_find_location() static
+  * BACKPORT: exfat: fix typos in comments
+  * BACKPORT: exfat: simplify is_valid_cluster()
+  * BACKPORT: exfat: fix incorrect loading of i_blocks for large files
+  * BACKPORT: exfat: handle wrong stream entry size in exfat_readdir()
+  * BACKPORT: exfat: avoid incorrectly releasing for root inode
+  * BACKPORT: exfat: speed up iterate/lookup by fixing start point of traversing cluster chain
+  * BACKPORT: exfat: improve write performance when dirsync enabled
+  * BACKPORT: exfat: add support ioctl and FITRIM function
+  * BACKPORT: exfat: introduce bitmap_lock for cluster bitmap access
+  * BACKPORT: exfat: fix erroneous discard when clear cluster bit
+  * BACKPORT: exfat: improve performance of exfat_free_cluster when using dirsync mount option
+  * BACKPORT: exfat: fix shift-out-of-bounds in exfat_fill_super()
+  * BACKPORT: exfat: Avoid allocating upcase table using kcalloc()
+  * exfat: remove useless check in exfat_move_file()
+  * exfat: remove 'rwoffset' in exfat_inode_info
+  * exfat: replace memcpy with structure assignment
+  * exfat: remove useless directory scan in exfat_add_entry()
+  * exfat: eliminate dead code in exfat_find()
+  * exfat: use i_blocksize() to get blocksize
+  * exfat: fix misspellings using codespell tool
+  * exfat: fix use of uninitialized spinlock on error path
+  * exfat: fix pointer error checking
+  * exfat: retain 'VolumeFlags' properly
+  * exfat: optimize exfat_zeroed_cluster()
+  * exfat: add error check when updating dir-entries
+  * exfat: write multiple sectors at once
+  * exfat: remove EXFAT_SB_DIRTY flag
+  * exfat: fix name_hash computation on big endian systems
+  * exfat: fix wrong size update of stream entry by typo
+  * exfat: fix wrong hint_stat initialization in exfat_find_dir_entry()
+  * exfat: fix overflow issue in exfat_cluster_to_sector()
+  * [PATCH] fs: Reduce boilerplate in fsid handling
+  * fs: exfat: Import `5.8-2arter97` and include to build
+  * drivers: android: Place a no-op PSI driver for SLMK
+  * version 10
+  * techpack: display:  Implement doze mode
+  * techpack: display: remove stock doze implementation
+  * arm64: dts: umi: optimise battery charging further
+  * mbcache: Speed up cache entry creation
+  * arm64: select HAVE_MOVE_PMD for faster mremap
+  * mm: speed up mremap by 20x on large regions
+  * ARM64: kona/lito: Optimize FOD HBM to fix fod flashing
+  * techpack: display: temporary disable DC dimming when in fod_hbm mode
+  * techpack: display: temporary disable DC dimming when in hbm mode
+  * techpack: display: adapt exposure adjustment methods to sm8250
+  * techpack: display: Let exposure adjustment switchable via sysfs
+  * techpack: display: Introduce exposure adjustment driver
+  * version 9
+  * defconfig: regen
+  * drivers: xiaomi_touch: add a sysfs node to bump touch sample rate
+  * version 8
+  * defconfigs: enable pelt halflife
+  * ANDROID: sched/fair: correct pelt load information in sched-pelt.h
+  * FROMLIST: sched/fair: add support to tune PELT ramp/decay timings
+  * sched/fair: Fix kernel warning
+  * UPSTREAM: sched: Fix out-of-bound access in uclamp
+  * BACKPORT: sched/fair: Fix overutilized update in enqueue_task_fair()
+  * kernel/sched: spread big prefer_idle tasks to little cores
+  * UPSTREAM: sched/rt: Disable RT_RUNTIME_SHARE by default
+  * sched: refine code for computing energy
+  * sched/fair: refine can_migrate_boosted_task
+  * sched/core: fix userspace affining threads incorrectly by task name.
+  * kernel: sched: account for real time utilization
+  * sched: Improve the scheduler
+  * sched/core: Fix use after free issue in is_sched_lib_based_app()
+  * sched/core: fix userspace affining threads incorrectly
+  * sched: fine tune task placement for prioritized tasks
+  * sched: fair: placement optimization for heavy load
+  * Revert "sched: fine tune task placement for prioritized tasks"
+  * sched: fine tune task placement for prioritized tasks
+  * sched/fair: schedule lower priority tasks from little cores
+  * sched/fair: do not use boosted margin for prefer_high_cap case
+  * sched/fair: use actual cpu capacity to calculate boosted util
+  * sched: separate capacity margin for boosted tasks
+  * sched: separate boost signal from placement hint
+  * kernel: sched: merge changes from LA.UM.9.12.R2.10.00.00.685.011
+  * Use find_best_target to select cpu for a zero-util task
+  * sched/fair: Fix compilation issues for !CONFIG_SCHED_WALT
+  * GKI: sched: Add back the root_domain.overutilized field
+  * GKI: sched: Compile out push_task field in struct rq
+  * sched: restrict iowait boost to tasks with prefer_idle
+  * trace: sched: add capacity change tracing
+  * sched: reduce softirq conflicts with RT
+  * sched/fair: let scheduler skip util checking if cpu is idle
+  * kernel: sched: Mitigate non-boosted tasks preempting boosted tasks
+  * Revert "sched/core: fix userspace affining threads incorrectly"
+  * Revert "sched/core: Fix use after free issue in is_sched_lib_based_app()"
+  * Revert "sched: Improve the scheduler"
+  * sched/fair: prefer exclusive mid cluster cpu for top-app task
+  * sched: delete unused & buggy function definitions
+  * sched/fair: fix implementation of is_min_capacity_cpu()
+  * sched/fair: refine some scheduler changes from AU drop
+  * BACKPORT: sched/fair: if sync flag ignored, try to place in mid cluster
+  * Revert "sched/walt: Improve the scheduler"
+  * sched: core: Disable double lock/unlock balance in move_queued_task()
+  * sched: fair: Disable double lock/unlock balance in detach_task()
+  * sched/fair: apply sync wake-up to pure CFS path
+  * Revert "sched: fair: Always try to use energy efficient cpu for wakeups"
+  * sched: fair: avoid little cpus due to sync, prev bias
+  * sched: fix issue of cpu freq running at max always
+  * sched/fair: Fix compilation issues for !CONFIG_SCHED_WALT
+  * kernel: sched: fix cpu cpu_capacity_orig being capped incorrectly
+  * sched/walt: Fix negative count of sched_asym_cpucapacity static key
+  * Revert "sched/fair: Add policy for restricting prefer_spread to newly idle balance"
+  * ashmem: Adapt building on msm-4.19
+  * ashmem: Rewrite to improve clarity and performance
+  * version 7
+  * usb: dwc3-msm: Set usb_data_enabled initial value earlier
+  * usb: new attributes implementation to enable/disable usb data Bug: 188760285 Test: driver probe and attributes access normally Signed-off-by: Albert Wang <albertccwang@google.com> Change-Id: I0aec98eebff9454cdec065bb09825f6442ac013b
+  * cpufreqX: schedutil: Use kobject release() method to free sugov_tunables
+  * arch: dts: Throttle charging speed and Optimise charging current
+  * arm64: lib: Memory utilities optimization
+  * version 6
+  * thermal: tsens: remove unused
+  * drivers: arch_topology: wire up thermal limit for arch_scale_max_freq_capacity
+  * net: ipv4: Reduce TCP performance spikes
+  * setlocalversion: Never append a "+" to localversion
+  * drivers:block:zram:default lz4
+  * zram: Move default compression algorithm choice to Kconfig
+  * defconfig: enable lz4 compression
+  * version 5
+  * version 4
+  * version 3
+  * build: version 2
+  * build: its Snow time !!!
+  * defconfig: Bump SLMK minfree & timeout
+  * lib/sort: Move swap, cmp and cmp_r function types for wider use
+  * media: lib/sort.c: implement sort() variant taking context argument
+  * lib/sort.c: fix kernel-doc notation warnings
+  * lib/sort: avoid indirect calls to built-in swap
+  * lib/sort: use more efficient bottom-up heapsort variant
+  * lib/sort: make swap functions more generic
+  * lib/string: optimized memset
+  * lib/string: optimized memmove
+  * lib/string: optimized memcpy
+  * arm64: strcmp: align to 64B cache line
+  * arm64: Use optimized memcmp
+  * mm: kmemleak: Don't die when memory allocation fails
+  * defconfig: regen
+  * treewide: use mi drm notifier
+  * defconfig: regen
+  * cpufreq: schedutilX: Introduce initial bringup
+  * dsi_display:  Use type_map array index 0 for invalid hbm values
+  * dsi_display: Add support for high brightness mode (HBM)
+  * defconfig: enable Simple LMK
+  * simple_lmk: Thaw victims upon killing them
+  * simple_lmk: Make the reclaim thread freezable
+  * simple_lmk: Be extra paranoid if tasks can have no pages
+  * mm: Increment kswapd_waiters for throttled direct reclaimers
+  * simple_lmk: Use atomic_t instead of spinlock
+  * simple_lmk: Fix 7fabc7afd81908f5ab065a8bac5358cdeda22c24
+  * simple_lmk: Try to improve UX
+  * mm: vmpressure: Fix rampant inaccuracies caused by stale data usage
+  * mm: vmpressure: Fix a race that would erroneously clear accumulated data
+  * mm: vmpressure: Ignore costly-order allocations for direct reclaim too
+  * simple_lmk: Update do_send_sig_info() group argument for 4.18+
+  * simple_lmk: Optimize victim finder to eliminate hard-coded adj ranges
+  * simple_lmk: Cacheline-align the victims array and mm_free_lock on SMP
+  * simple_lmk: Pass a custom swap function to sort()
+  * simple_lmk: Skip victim reduction when all victims need to be killed
+  * simple_lmk: Use MIN_FREE_PAGES wherever pages_needed is used
+  * simple_lmk: Don't block in simple_lmk_mm_freed() on mm_free_lock
+  * mm: vmpressure: Don't export tunables to userspace
+  * simple_lmk: Update Kconfig description for VM pressure change
+  * simple_lmk: Add !PSI dependency
+  * simple_lmk: Print a message when the timeout is reached
+  * VFS: use synchronize_rcu_expedited() in namespace_unlock()
+  * simple_lmk: Remove unnecessary clean-up when timeout is reached
+  * simple_lmk: Hold an RCU read lock instead of the tasklist read lock
+  * mm: Don't stop kswapd on a per-node basis when there are no waiters
+  * simple_lmk: Consider all positive adjs when finding victims
+  * mm: vmpressure: Ignore allocation orders above PAGE_ALLOC_COSTLY_ORDER
+  * mm: Don't warn on page allocation failures for OOM-killed processes
+  * mm: Adjust tsk_is_oom_victim() for Simple LMK
+  * mm: vmpressure: Don't cache the window size
+  * mm: vmpressure: Interpret zero scanned pages as 100% pressure
+  * mm: vmpressure: Don't exclude any allocation types
+  * simple_lmk: Update adj targeting for Android 10
+  * simple_lmk: Use vmpressure notifier to trigger kills
+  * mm: vmpressure: account allocstalls only on higher pressures
+  * mm: vmpressure: scale pressure based on reclaim context
+  * mm: Stop kswapd early when nothing's waiting for it to free pages
+  * simple_lmk: Include swap memory usage in the size of victims
+  * simple_lmk: Relax memory barriers and clean up some styling
+  * simple_lmk: Place victims onto SCHED_RR
+  * simple_lmk: Add a timeout to stop waiting for victims to die
+  * simple_lmk: Ignore tasks that won't free memory
+  * simple_lmk: Simplify tricks used to speed up the death process
+  * simple_lmk: Report mm as freed as soon as exit_mmap() finishes
+  * simple_lmk: Mark victim thread group with TIF_MEMDIE
+  * simple_lmk: Disable OOM killer when Simple LMK is enabled
+  * simple_lmk: Print a message when there are no processes to kill
+  * simple_lmk: Remove compat cruft not specific to 4.14
+  * simple_lmk: Update copyright to 2020
+  * simple_lmk: Don't queue up new reclaim requests during reclaim
+  * simple_lmk: Increase default minfree value
+  * simple_lmk: Clean up some code style nitpicks
+  * simple_lmk: Make reclaim deterministic
+  * simple_lmk: Fix broken multicopy atomicity for victims_to_kill
+  * simple_lmk: Use proper atomic_* operations where needed
+  * simple_lmk: Remove kthread_should_stop() exit condition
+  * simple_lmk: Fix pages_found calculation
+  * simple_lmk: Introduce Simple Low Memory Killer for Android
+  * techpack: camera: Import xiaomi changes from psyche-r-oss
+  * msm: camera: Fix memory leak in cam_res_mgr_probe()
+  * techpack: camera: Fix memory leak
+  * msm-camera: Unmap secure buffers in secure usecase
+  * techpack: camera: cam_fd: fix double add into list
+  * techpack: camera: ois: Add lc898128 firmware support
+  * defconfig: regen
+  * platform: msm: Fix dangerous relocation
+  * defconfig: enable wakelock blocker
+  * boeffla_wl_blocker: don't block wakelocks by default
+  * boeffla_wl_blocker: update to wakelock blocker driver v1.1.0
+  * boeffla_wl_blocker: update to wakelock blocker driver v1.0.1
+  * boeffla_wl_blocker: add generic wakelock blocker driver v1.0.0
+  * ARM64: dts: Allow Adreno 650 to nap
+  * Kernel: Disable GFS for better UI performance
+  * Kernel/sched: Reduce Latency [Pafcholini]
+  * Kernel/sched: Reduce latency for better responsiveness
+  * defconfig: enable zen i/o scheduler
+  * zen-iosched:: fix elevator ops
+  * zen-iosched: cast parameters to unsigned long
+  * block: zen: fix build on 3.18 kernel
+  * block: add zen IO scheduler
+  * msm: kgsl: Report correct GPU frequency in sysfs
+  * adreno_tz: Fix GPU target frequency calculation for high refresh rates
+  * drm-msm-dsi: add backlight min option
+  * msm: kgsl: adreno: Properly set GPU timeout
+  * dts: kona: Set GPU idle timeout to 64 ms
+  * cpufreq: schedutil: make iowait boost optional
+  * kernel: Boost all CPUs to the max when userspace launches an app
+  * cpu_input_boost: Add support for max boost freqs lower than min freq
+  * cpu_input_boost: add support for boost freqs lower than min freq
+  * cpu_input_boost: Allow configuration of each cluster's minimum idle frequency
+  * cpu_input_boost: Allow configuration of each cluster's minimum frequency
+  * cpu_input_boost: Expose compile-time settings as module parameters
+  * cpu_input_boost: Introduce driver for event-based CPU boosting
+  * cpumask: Add cpumasks for big, LITTLE, and prime CPU clusters
+  * kcal: pie: fix used pcc setup for sde path
+  * drm: msm: kcal: make the userspace module param vars static and use short instead of integers
+  * drm: msm: kcal: hue, saturation, value and contrast adjustments
+  * drm: msm: kcal: export rgb to userspace and clean it up
+  * kcal: sde_hw: color proc v4: add RGB bias
+  * adrenoboost: stats is now a pointer
+  * adrenoboost: disable by default
+  * adrenoboost: finetuning algorithm - scale it a bit down
+  * msm_adreno_tz: add adrenoboost parameter
+  * msm_performance: Kill boosts
+  * defconfig: unset cpu boost
+  * msm: kgsl: Turn debugfs off
+  * msm: kgsl: Relax CPU latency requirements to save power
+  * kgsl: run kgsl-workqueue as a high prio wq
+  * kgsl: Increase priority of RT thread
+  * devfreq: Use high priority workqueue
+  * workqueue: change permissions to allow root control of wq_power_efficient toggle
+  * drivers/mmc/core: expose software CRC check option to userspace
+  * arch/Kconfig: disable Shadow Call Stack by default
+  * security: set INIT_STACK_NONE as default
+  * treewide: build modules inline
+  * defconfig: regen
+  * add yarpiins build stuff
+  * gitignore: add out directory
+  * kernel: update sm8250-pref_defconfig
+  * kernel: Use sm8250-perf_defconfig for /proc/config.gz
+  * arch: arm64: configs: xiaomi: enable CONFIG_CPU_FREQ_STAT
+  * usb: dwc3-msm: Set usb_data_enabled initial value earlier
+  * usb: new attributes implementation to enable/disable usb data
+  * sysfs: Add sysfs_emit and sysfs_emit_at to format sysfs output
+  * subsystem_restart: Always performs soft resets when subsystems crash
+  * techpack: display: drm/msm: add idle state sysfs node
+  * ARM64/dts: alioth: Re-order refresh rate timing
+  * arm64/dts: alioth: Fix typo
+  * ARM64/configs: alioth: Enable FPC fingerprint driver
+  * input: fingerprint: fpc_tee: Add dummy power_cfg sysfs
+  * techpack: display: sde: encoder: remove intf_frame_count reading
+  * techpack: display: track real backlight value
+  * techpack: display: msm: sde: Increase sde stage to map zpos changes
+  * drm: msm: handle more scenarios when getting fod dim alpha
+  * drm/msm: fix brightness level mapping
+  * ARM64: dts: Disable Xiaomi FOD dimlayer impl
+  * uapi: sde_drm: Define FOD_PRESSED_LAYER_ZORDER
+  * techpack: display: msm: notify sysfs for fod ui changes
+  * techpack: display: msm: implement fod handling
+  * techpack: display: msm: dsi: add dsi_panel_get_backlight
+  * techpack: display: msm: dsi: add get_main_display
+  * techpack: display: msm: sde: translate zpos property to fod property
+  * techpack: display: msm: dsi: create empty attributes group
+  * ARM64/dts: alioth: Update display panel timing configuration
+  * ARM64/dts: alioth: Fix rear camera eeprom entry
+  * arch: arm64: configs: xiaomi: lmi: Enable back some drivers
+  * arch: arm64: configs: xiaomi: lmi: Reenable CONFIG_DM_SNAPSHOT
+  * arch: arm64: configs: xiaomi: Enable device-specific drivers
+  * techpack: video: msm: vidc: disable decode batching feature
+  * techpack: display: Import Xiaomi changes
+  * techpack: camera: Import minimal xiaomi camera modifications
+  * techpack: audio: Import Xiaomi changes
+  * sound: soc: Import Xiaomi changes
+  * kernel: Import Xiaomi changes
+  * init: Import Xiaomi changes
+  * fs: pstore: Import Xiaomi changes
+  * drivers: video: backlight: Import Xiaomi changes
+  * drivers: thermal: Import Xiaomi changes
+  * drivers: staging: android: Import Xiaomi changes
+  * drivers: spi: Import Xiaomi changes
+  * drivers: soc: qcom: Import Xiaomi changes
+  * Revert "regulator: qpnp-lcdb: Disable step voltage ramp for PM8150L V3"
+  * Revert "regulator: qpnp-lcdb: Add n_voltages property for LCDB regulators"
+  * power: qcom: Import xiaomi modifications from psyche-r-oss
+  * smb5: Fix SDP current override for USB phy speed
+  * Revert "usb: dwc3: Ensure blocking_sync waits until host mode starts or stops"
+  * Revert "usb: pd: Add support to disable pps capability"
+  * Revert "USB: pd: Restart host mode in high speed if no usb3 & dp concurrency"
+  * Revert "USB: pd: Add support for enabling PD2.0 only as source"
+  * usb: pd: Import xiaomi usbpd modifications
+  * usb: f_mtp: Set MTP interface same as PTP interface
+  * usb: f_gsi: Load wireless controller rndis for non MSOS devices
+  * usb: f_gsi: Set rndis over ethernet for MSOS devices
+  * usb: configs: Implement device attribute for MSOS vendor
+  * usb: configfs: Add function to disable usb power supply rechecking
+  * usb: gadget: composite: Set bcdUSB to 2.0 for not superspeed gadget
+  * usb: gadget: composite: Disable LPM and BESL support
+  * usb: dwc3: Disable USB LPM Feature
+  * tty: serial: Support fastboot oem uart-enable command
+  * power: qcom: cas: Add support for 60W PD charging
+  * power: qcom: Import xiaomi power supply modifications
+  * Revert "qcom: step-chg-jeita: Add support for jeita fcc scaling"
+  * Merge "net: usb: ax88179_178a: support setting mac to eeprom"
+  * Merge "gup: document and work around "COW can break either way" issue"
+  * drivers: net: Import Xiaomi changes
+  * nfc: nq-nfc: Add xiaomi modifications for nfc bringup
+  * Revert "NFC: Add support for core init command"
+  * drivers: misc: Import DRV8846 motor driver
+  * drivers: misc: Import AKM09970 driver
+  * drivers: media: rc: Import Xiaomi SPI IR driver
+  * drivers: leds: Import Xiaomi changes
+  * drivers: leds: Import AW2015 driver
+  * drivers: input: touchscreen: nt36672c: Implement double_tap node
+  * drivers: input: touchscreen: fts_521: Implement double_tap node
+  * drivers: input: touchscreen: focaltech_spi: Implement double_tap node
+  * drivers: input: touchscreen: focaltech_touch_mi: Implement double_tap node
+  * drivers: input: touchscreen: Add an interface to expose TP features to userspace
+  * drivers: input: touchscreen: Prevent unnecessary input sync
+  * drivers: input: touchscreen: Import Xiaomi drivers
+  * drivers: input: misc: Import AW8697 haptic driver
+  * drivers: input: fingerprint: Prevent unlock rejection timeout
+  * drivers: input: Import Xiaomi fingerprint drivers
+  * drivers: iio: proximity: Import Xiaomi Ultrasound driver
+  * drivers: gpu: drm: Import Xiaomi changes
+  * drivers: cpufreq: Import Xiaomi changes
+  * firmware: Add FIRMWARE_IN_KERNEL support
+  * arch: arm64: dts: panel: Disable mi smart fps
+  * arch: arm64: dts: panel: Enable Qsync minimum refresh rate
+  * arch: arm64: dts: panel: Cleanup supported refresh rates list
+  * arch: arm64: dts: panel: Correct physical dimensions reporting
+  * arch: arm64: dts: qcom: kona-camera: fix i2c and order clocks correctly
+  * arch: arm64: dts: Update dts code to match stock dtbo
+  * arch: arm64: dts: Import Xiaomi devicetree
+  * arch: arm64: configs: xiaomi: Enable device-specific platform
+  * arch: arm64: configs: xiaomi: Enable QCACLD
+  * arch: arm64: configs: xiaomi: Enable CONFIG_BUILD_ARM64_DT_OVERLAY
+  * arch: arm64: configs: xiaomi: Set localversion to lineageos
+  * arch: arm64: configs: xiaomi: Initial import
+  * platform: Add support for Xiaomi SM8250 platform
+  * arch: arm64: dts: Exclude standard dts if vendor dts exists
+  * arm64: Makefile: Remove "-z norelro" from vmlinux ldflags
+  * scripts: Makefile.lib: Don't disable dtc checks
+  * scripts: use python rewrite in libfdt for mkdtimg
+  * dtbo.img: build device tree overlay partition image
+  * build-dtbo: Support base dtbs which located in foreign folder
+  * dtc: Shut up
+  * scripts/dtc: Update to upstream version v1.5.0-30-g702c1b6c0e73
+  * scripts/dtc: Update to upstream version v1.5.0-23-g87963ee20693
+  * scripts/dtc: Update to upstream version v1.4.7-57-gf267e674d145
+  * scripts/dtc: Update to upstream version v1.4.7-14-gc86da84d30e4
+  * scripts/dtc: Add yamltree.c to dtc sources
+  * qcacld-3.0: Fallback to default WCNSS config path for custom ROMs
+  * qcacld-3.0: wlan_hdd_misc: Fix ini file path for oos11
+  * qcacld-3.0: Cleanup unused driver initialization code
+  * drivers: staging: qca-wifi-host-cmn: Move IPA_TCL_DATA_RING_IDX definition out of conditional statement
+  * qcacld-3.0: Disable build tagging.
+  * qcacld-3.0: Only call hdd_debugfs_process_mib_stats if debugfs is enabled.
+  * qcacld-3.0: qca6390_defconfig: Tone down debugging.
+  * qcacld-3.0: qca6390_defconfig: Enable power debug.
+  * qcacld-3.0: qca6390_defconfig: Enable desc debug check.
+  * qcacld-3.0: qca6390_defconfig: Enable multi-page allocation.
+  * qcacld-3.0: Fix regulatory domain country names.
+  * qcacld-3.0: Nuke rx_wakelock code entirely.
+  * qcacld-3.0: Defer HDD initialization.
+  * qcacld-3.0: Discard wlan_boot sysfs code on !CONFIG_MODULES.
+  * qcacld-3.0: Initialize variables to avoid errors during compilation.
+  * qcacld-3.0: Do not manually re-enable -Wmaybe-uninitialized.
+  * qcacld-3.0: Always force user build.
+  * qcacld-3.0: Nuke Kconfig-based configuration entirely.
+  * drivers: staging: Include qcacld-3.0 source
+  * techpack: Integrate Qualcomm data-kernel package
+  * techpack: audio: Make all konaauto drivers built in
+  * techpack: audio: Correct symlinks
+  * Android.bp: Namespace it
+  * Android: Add empty Android.mk file
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/qcacld-3.0 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/qca-wifi-host-cmn into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/fw-api into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/opensource/video-driver into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/data-kernel into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.0' of  https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-08000-SMxx50.0' of https://source.codeaurora.org/quic/la/platform/vendor/opensource/display-drivers into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * Merge tag 'LA.UM.9.12.r1-08000-SMxx50.0' of https://source.codeaurora.org/quic/la/platform/vendor/opensource/audio-kernel into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * gitignore: Don't ignore techpack
+  * techpack: Remove .gitignore
+  * Merge tag 'LA.UM.9.12.r1-14400-SMxx50.QSSI12.0' of https://git.codelinaro.org/clo/la/kernel/msm-4.19 into LA.UM.9.12.1.r1-XXXX-SMxx50.QSSI12.0-rebase
+  * initial commit
+  * misc: updates to controller's driver
+  * Merge "power: qpnp-fg-gen4: Update msoc on every FVSS soc update"
+  * gup: document and work around "COW can break either way" issue
+  * Merge "msm: ipa3: add check in odl pipe cleanup"
+  * Merge "ipa3: Changes to call disable datapth API before stop channel"
+  * Merge "msm: disp: dp: add aux dp support by usb mode"
+  * Merge "tz_log : use file->private_data to get tz_id for debugfs"
+  * Merge "msm: adsprpc: Handle out of bounds access"
+  * Merge "HID: check for valid USB device for many HID drivers"
+  * power: qpnp-fg-gen4: Update msoc on every FVSS soc update
+  * ipa3: Changes to call disable datapth API before stop channel
+  * tz_log : use file->private_data to get tz_id for debugfs
+  * msm: adsprpc: Handle out of bounds access
+  * net: usb: ax88179_178a: support setting mac to eeprom
+  * msm: disp: dp: add aux dp support by usb mode
+  * msm: ipa3: add check in odl pipe cleanup
+  * HID: check for valid USB device for many HID drivers
+
 n.n.n / 2022-08-03
 ==================
 
