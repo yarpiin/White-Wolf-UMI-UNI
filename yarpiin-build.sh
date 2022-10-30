@@ -76,12 +76,16 @@ function make_umi_kernel {
         export TARGET_PRODUCT=umi
         make O=out ARCH=arm64 $UMIDEFCONFIG
 
-        PATH="$CLANG_DIR:$GCC_DIR:${PATH}" \
-        make -j$(nproc --all) O=out \
-                      ARCH=arm64 \
-                      CC=clang \
-                      CLANG_TRIPLE=aarch64-linux-gnu- \
-                      CROSS_COMPILE=aarch64-linux-android-
+	    make -j$(nproc) O=out ARCH=arm64 ${UMIDEFCONFIG}
+	    make -j$(nproc) ARCH=arm64 O=out \
+		    CC=${CLANG_DIR}/clang \
+		    AR=${CLANG_DIR}/llvm-ar \
+		    NM=${CLANG_DIR}/llvm-nm \
+		    OBJCOPY=${CLANG_DIR}/llvm-objcopy \
+		    OBJDUMP=${CLANG_DIR}/llvm-objdump \
+		    STRIP=${CLANG_DIR}/llvm-strip \
+		    LD=${CLANG_DIR}/ld.lld \
+		    CROSS_COMPILE=aarch64-linux-gnu-
 
 		cp -vr $ZIMAGE_DIR/$KERNEL $KERNELFLASHER_DIR
 		cp -vr $ZIMAGE_DIR/$DTBOIMG $KERNELFLASHER_DIR
@@ -94,12 +98,16 @@ function make_cmi_kernel {
         export TARGET_PRODUCT=cmi
         make O=out ARCH=arm64 $CMIDEFCONFIG
 
-        PATH="$CLANG_DIR:$GCC_DIR:${PATH}" \
-        make -j$(nproc --all) O=out \
-                      ARCH=arm64 \
-                      CC=clang \
-                      CLANG_TRIPLE=aarch64-linux-gnu- \
-                      CROSS_COMPILE=aarch64-linux-android-
+	    make -j$(nproc) O=out ARCH=arm64 ${CMIDEFCONFIG}
+	    make -j$(nproc) ARCH=arm64 O=out \
+		    CC=${CLANG_DIR}/clang \
+		    AR=${CLANG_DIR}/llvm-ar \
+		    NM=${CLANG_DIR}/llvm-nm \
+		    OBJCOPY=${CLANG_DIR}/llvm-objcopy \
+		    OBJDUMP=${CLANG_DIR}/llvm-objdump \
+		    STRIP=${CLANG_DIR}/llvm-strip \
+		    LD=${CLANG_DIR}/ld.lld \
+		    CROSS_COMPILE=aarch64-linux-gnu-
 
 		cp -vr $ZIMAGE_DIR/$KERNEL $KERNELFLASHER_DIR
 		cp -vr $ZIMAGE_DIR/$DTBOIMG $KERNELFLASHER_DIR
@@ -112,12 +120,16 @@ function make_cas_kernel {
         export TARGET_PRODUCT=cas
         make O=out ARCH=arm64 $CASDEFCONFIG
 
-        PATH="$CLANG_DIR:$GCC_DIR:${PATH}" \
-        make -j$(nproc --all) O=out \
-                      ARCH=arm64 \
-                      CC=clang \
-                      CLANG_TRIPLE=aarch64-linux-gnu- \
-                      CROSS_COMPILE=aarch64-linux-android-
+	    make -j$(nproc) O=out ARCH=arm64 ${CASDEFCONFIG}
+	    make -j$(nproc) ARCH=arm64 O=out \
+		    CC=${CLANG_DIR}/clang \
+		    AR=${CLANG_DIR}/llvm-ar \
+		    NM=${CLANG_DIR}/llvm-nm \
+		    OBJCOPY=${CLANG_DIR}/llvm-objcopy \
+		    OBJDUMP=${CLANG_DIR}/llvm-objdump \
+		    STRIP=${CLANG_DIR}/llvm-strip \
+		    LD=${CLANG_DIR}/ld.lld \
+		    CROSS_COMPILE=aarch64-linux-gnu-
 
 		cp -vr $ZIMAGE_DIR/$KERNEL $KERNELFLASHER_DIR
 		cp -vr $ZIMAGE_DIR/$DTBOIMG $KERNELFLASHER_DIR
