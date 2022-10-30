@@ -1,4 +1,1180 @@
 
+n.n.n / 2022-10-30
+==================
+
+  * defconfig: Enable LRNG
+  * LRNG: Backport to 4.19 kernel
+  * lrng: merge v45 from linux-5.15.y
+  * lrng: merge v45
+  * lrng: merge v43
+  * LRNG - add power-on and runtime self-tests
+  * LRNG - add interface for gathering of raw entropy
+  * LRNG - add SP800-90B compliant health tests
+  * LRNG - add Jitter RNG fast noise source
+  * LRNG - add kernel crypto API PRNG extension
+  * LRNG - add SP800-90A DRBG extension
+  * LRNG - add common generic hash support
+  * LRNG - add switchable DRNG support
+  * LRNG - sysctls and /proc interface
+  * LRNG - allocate one DRNG instance per NUMA node
+  * drivers: Introduce Linux Random Number Generator
+  * arm64: dts: kona-v2: Tweak energy model
+  * sched: Ideally use 10ms scheduling periods
+  * sched: Reduce the opportunity for sleepers to preempt
+  * schedutil: enforce realtime priority
+  * sched/features: Fix hrtick reprogramming
+  * ANDROID: sched: fair: balance for single core cluster
+  * sched/core: Allow the remote scheduler tick to be started on CPU0
+  * gpu: adreno: Increase data processing limit
+  * drm: drm_match_cea_mode always return 0
+  * msm: kgsl: Parallelization of kgsl_3d_init
+  * Merge remote-tracking branch 'f2fs/linux-4.19.y' into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * defconfig: regen
+  * build: drop gcc in favour of LLVM
+  * Revert "UPSTREAM: arm64: Add support for relocating the kernel with RELR relocations"
+  * arch/Kconfig: enable CFI options by default when LTO in use
+  * arch/Kconfig: make CONFIG_LTO_NONE usable
+  * crypto: arm64/aes-modes - get rid of literal load of addend vector
+  * Makefile: Don't disable LLVM integrated assembler
+  * BACKPORT: arm64: vdso32: suppress error message for 'make mrproper'
+  * UPSTREAM: ARM64: vdso32: Install vdso32 from vdso_install
+  * Revert "selinux: Relocate ss_initialized and selinux_enforcing to separate 4k"
+  * platform: msm: gsi: Export symbols only if compiled as module
+  * arm64: Change .weak to SYM_FUNC_START_WEAK_PI for arch/arm64/lib/mem*.S
+  * arm64: lse: fix LSE atomics with LLVM's integrated assembler
+  * f2fs: introduce gc_mode sysfs node
+  * f2fs: fix to destroy sbi->post_read_wq in error path of f2fs_fill_super()
+  * f2fs: fix return val in f2fs_start_ckpt_thread()
+  * f2fs: fix the msg data type
+  * f2fs: Fix typo in comments
+  * f2fs: fix to set flush_merge opt and show noflush_merge
+  * f2fs: introduce max_ordered_discard sysfs node
+  * f2fs: add proc entry to show discard_plist info
+  * f2fs: allow to set compression for inlined file
+  * f2fs: add barrier mount option
+  * f2fs: fix normal discard process
+  * f2fs: cleanup in f2fs_create_flush_cmd_control()
+  * f2fs: fix gc mode when gc_urgent_high_remaining is 1
+  * f2fs: remove batched_trim_sections node
+  * f2fs: support fault injection for f2fs_is_valid_blkaddr()
+  * f2fs: fix to invalidate dcc->f2fs_issue_discard in error path
+  * f2fs: introduce F2FS_IOC_START_ATOMIC_REPLACE
+  * f2fs: correct i_size change for atomic writes
+  * f2fs: Fix the race condition of resize flag between resizefs
+  * f2fs: let's avoid to get cp_rwsem twice by f2fs_evict_inode by d_invalidate
+  * f2fs: should put a page when checking the summary info
+  * version 18
+  * defconfig regen
+  * block: cfq-iosched: Port samsung optimizations from SM-N986B
+  * ANDROID: block: cfq: Disable logging if trace is not enabled
+  * cfq: clear queue pointers from cfqg after unpinning them in cfq_pd_offline
+  * block: set slice_idle to 0 on cfq
+  * cfq-iosched: fix the setting of IOPS mode on SSDs
+  * Apply tunings from redHat[1] for faster storage.
+  * block: Make CFQ default to IOPS mode on SSDs
+  * block: cfq-iosched: Micro optimize
+  * ANDROID: softirq: Refine RT defer softirq Do not defer softirq processing when RT throttling. Otherwise softirq process would be deferred indefinitely.
+  * BACKPORT: sched/fair: Load balance aggressively for SCHED_IDLE CPUs
+  * BACKPORT: sched/fair: Make sched-idle CPU selection consistent throughout
+  * BACKPORT: sched/fair: Fall back to sched-idle CPU if idle CPU isn't found
+  * cpuidle: lpm-levels: Only cancel the bias timer when it's used
+  * Tweak cpuidle governor to enter deep C state faster
+  * cpuidle: lpm-levels: Allow exit latencies equal to target latencies
+  * cpufreq_schedutilX: Target loads implementation Target load. Lower values result in higher CPU speeds.
+  * UPSTREAM: cpufreq: schedutil: restore cached freq when next_f is not changed
+  * cpufreq: schedutil: Cleanup all iowait_boost code
+  * timekeeping: Keep the tick alive when CPUs cycle out of s2idle
+  * msm: kgsl: Wake GPU upon receiving an ioctl rather than upon touch input
+  * msm: kgsl: Increase worker thread priority
+  * clk: qcom: mdss: Fix tons of memory leaks
+  * power / suspend: Use s2idle by default
+  * kernel: power: Entirely checkout to msm-5.4
+  * kernel: power: Checkout to msm-5.4
+  * drivers: soc: qcom: Checkout to msm-5.4
+  * soc/qcom: Fix errors
+  * soc: qcom: qmi_interface: Parse all control packets
+  * soc: qcom: qmi: Return EPROBE_DEFER if no address family
+  * soc: qcom: qmi_interface: Protect sk_user_data with RCU
+  * soc/qcom: Checkout to 5.4 state
+  * rpmsg: char: Migrate to iter versions of read and write
+  * rpmsg: checkout native module from msm-5.4
+  * msm: camera: Remove nonsensical register reads in cam_vfe_fe_reg_dump()
+  * alarmtimer: Don't fail on wakeup
+  * defconfig: Disable ARM64 PAN emulation
+  * defconfig: Disable support for SVE
+  * defconfigs: Disable Qualcomm Thermal Limiter
+  * drivers: thermal: limits-dcvs: Always build driver
+  * block: Do not wake the request CPU if idle
+  * drivers: video: Optimized Console FrameBuffer for upto 70% increase in Performance
+  * msm: kgsl: Reduce latency while processing ioctls
+  * mm: Increase ratelimit pages value
+  * sched/fair: Switch sched scaling to linear
+  * cpufreq: schedutil: Inline `sugov_policy_free()`
+  * fs: default to noatime
+  * fs: sync: Avoid calling fdget without fdput When adding fsync support, we check for fsync_enabled() in several cases but it appears that we should fdput() after fdget() but the current code just check for fsync_enabled and directly return in some cases after calling fdget().
+  * fs: fsync on/off support
+  * defconfigs: adjust cmdline for faster boot
+  * cpufreq: schedutil: fix check for stale utilization values
+  * ARM64: kona/lito: Optimize FOD HBM to fix fod flashing
+  * touchscreen: fts_521: Fix strict-prototypes errors
+  * touchscreen: goodix_driver_gt9886: Fix strict-prototypes errors
+  * msm: adsprpc: Fix race condition in internal_control
+  * techpack: display: temporary disable DC dimming when in fod_hbm mode
+  * techpack: display: temporary disable DC dimming when in hbm mode
+  * techpack: display: adapt exposure adjustment methods to sm8250
+  * techpack: display: Let exposure adjustment switchable via sysfs
+  * techpack: display: Introduce exposure adjustment driver
+  * dsi_display:  Use type_map array index 0 for invalid hbm values
+  * dsi_display: Add support for high brightness mode (HBM)
+  * cnss2: Avoid race condition between time sync and system suspend
+  * cnss2: Make sure the write to remap window register take effect
+  * touchscreen: nt36672c: Return 0 if allocation fails in test_buff_init
+  * touchscreen: nt36672c: Fix unable to set xiaomi touch interface mode
+  * touchscreen: goodix_driver_gt9886: Fix memory leak in goodix_cfg_bin_proc
+  * input: misc: aw8697: Fix memory leak in aw8697_file_write
+  * kernel: time: reduce ntp wakeups
+  * scripts/Makefile.lib: Speed up build process
+  * cpufreq: Ensure the minimal frequency is lower than the maximal frequency
+  * power_supply: don't allocate attrname
+  * regulator: Retry read and write i2c operations on failure
+  * arm64: dts: kona: Switch to step-wise thermal governor
+  * BACKPORT: msm: kgsl: Add support for KGSL_PROP_VK_DEVICE_ID
+  * BACKPORT: msm: kgsl: Add a property to query gpu model name
+  * BACKPORT: msm: kgsl: Add support to get gpu model from device tree
+  * rmnet_ipa: Fix netdev watchdog triggering on suspend
+  * msm: ipa: Do not acquire wakelocks
+  * arm64: dts: umi: optimise battery charging further
+  * mbcache: Speed up cache entry creation
+  * arm64: select HAVE_MOVE_PMD for faster mremap
+  * mm: speed up mremap by 20x on large regions
+  * drivers: xiaomi_touch: add a sysfs node to bump touch sample rate
+  * sched: fix issue of cpu freq running at max always
+  * ashmem: Adapt building on msm-4.19
+  * ashmem: Rewrite to improve clarity and performance
+  * usb: dwc3-msm: Set usb_data_enabled initial value earlier
+  * usb: new attributes implementation to enable/disable usb data Bug: 188760285 Test: driver probe and attributes access normally Signed-off-by: Albert Wang <albertccwang@google.com> Change-Id: I0aec98eebff9454cdec065bb09825f6442ac013b
+  * cpufreqX: schedutil: Use kobject release() method to free sugov_tunables
+  * arch: dts: Throttle charging speed and Optimise charging current
+  * arm64: lib: Memory utilities optimization
+  * thermal: tsens: remove unused
+  * drivers: arch_topology: wire up thermal limit for arch_scale_max_freq_capacity
+  * net: ipv4: Reduce TCP performance spikes
+  * setlocalversion: Never append a "+" to localversion
+  * lib/sort: Move swap, cmp and cmp_r function types for wider use
+  * media: lib/sort.c: implement sort() variant taking context argument
+  * lib/sort.c: fix kernel-doc notation warnings
+  * lib/sort: avoid indirect calls to built-in swap
+  * lib/sort: use more efficient bottom-up heapsort variant
+  * lib/sort: make swap functions more generic
+  * lib/string: optimized memset
+  * lib/string: optimized memmove
+  * lib/string: optimized memcpy
+  * arm64: strcmp: align to 64B cache line
+  * arm64: Use optimized memcmp
+  * mm: kmemleak: Don't die when memory allocation fails
+  * defconfig: regen
+  * treewide: use mi drm notifier
+  * defconfig: regen
+  * cpufreq: schedutilX: Introduce initial bringup
+  * defconfig: enable wakelock blocker
+  * boeffla_wl_blocker: don't block wakelocks by default
+  * boeffla_wl_blocker: update to wakelock blocker driver v1.1.0
+  * boeffla_wl_blocker: update to wakelock blocker driver v1.0.1
+  * boeffla_wl_blocker: add generic wakelock blocker driver v1.0.0
+  * ARM64: dts: Allow Adreno 650 to nap
+  * Kernel: Disable GFS for better UI performance
+  * Kernel/sched: Reduce Latency [Pafcholini]
+  * Kernel/sched: Reduce latency for better responsiveness
+  * defconfig: enable zen i/o scheduler
+  * zen-iosched:: fix elevator ops
+  * zen-iosched: cast parameters to unsigned long
+  * block: zen: fix build on 3.18 kernel
+  * block: add zen IO scheduler
+  * msm: kgsl: Report correct GPU frequency in sysfs
+  * drm-msm-dsi: add backlight min option
+  * msm: kgsl: adreno: Properly set GPU timeout
+  * dts: kona: Set GPU idle timeout to 64 ms
+  * cpufreq: schedutil: make iowait boost optional
+  * kernel: Boost all CPUs to the max when userspace launches an app
+  * cpu_input_boost: Add support for max boost freqs lower than min freq
+  * cpu_input_boost: add support for boost freqs lower than min freq
+  * cpu_input_boost: Allow configuration of each cluster's minimum idle frequency
+  * cpu_input_boost: Allow configuration of each cluster's minimum frequency
+  * cpu_input_boost: Expose compile-time settings as module parameters
+  * cpu_input_boost: Introduce driver for event-based CPU boosting
+  * cpumask: Add cpumasks for big, LITTLE, and prime CPU clusters
+  * kcal: pie: fix used pcc setup for sde path
+  * drm: msm: kcal: make the userspace module param vars static and use short instead of integers
+  * drm: msm: kcal: hue, saturation, value and contrast adjustments
+  * drm: msm: kcal: export rgb to userspace and clean it up
+  * kcal: sde_hw: color proc v4: add RGB bias
+  * adrenoboost: stats is now a pointer
+  * adrenoboost: disable by default
+  * adrenoboost: finetuning algorithm - scale it a bit down
+  * msm_adreno_tz: add adrenoboost parameter
+  * msm_performance: Kill boosts
+  * defconfig: unset cpu boost
+  * msm: kgsl: Turn debugfs off
+  * msm: kgsl: Relax CPU latency requirements to save power
+  * kgsl: run kgsl-workqueue as a high prio wq
+  * kgsl: Increase priority of RT thread
+  * devfreq: Use high priority workqueue
+  * workqueue: change permissions to allow root control of wq_power_efficient toggle
+  * drivers/mmc/core: expose software CRC check option to userspace
+  * arch/Kconfig: disable Shadow Call Stack by default
+  * security: set INIT_STACK_NONE as default
+  * treewide: build modules inline
+  * add yarpiins build stuff
+  * gitignore: add out directory
+  * kernel: update sm8250-pref_defconfig
+  * kernel: Use sm8250-perf_defconfig for /proc/config.gz
+  * usb: dwc3-msm: Set usb_data_enabled initial value earlier
+  * usb: new attributes implementation to enable/disable usb data
+  * cas_defconfig: Sync it up with UM
+  * cmi_defconfig: Sync it up with UMI
+  * kernel_headers: Add missing kernel headers
+  * Android.bp: allow system to use generated kernel headers
+  * scsi: ufs: Guard `ufs_qcom_parse_lpm` for UMI
+  * techpack: display: sde: encoder: remove intf_frame_count reading
+  * techpack: display: track real backlight value
+  * techpack: display: msm: sde: Increase sde stage to map zpos changes
+  * drm: msm: handle more scenarios when getting fod dim alpha
+  * drm/msm: fix brightness level mapping
+  *  soc: qcom: smp2p_sleepstate: Add suspend delay
+  * uapi: sde_drm: Define FOD_PRESSED_LAYER_ZORDER
+  * techpack: display: msm: notify sysfs for fod ui changes
+  * techpack: display: msm: implement fod handling
+  * techpack: display: msm: dsi: add dsi_panel_get_backlight
+  * techpack: display: msm: dsi: add get_main_display
+  * techpack: display: msm: sde: translate zpos property to fod property
+  * techpack: display: msm: dsi: create empty attributes group
+  * ARM64: configs: umi: Switch to Westwood as default TCP congestion algorithm
+  * ARM64: configs: umi: disable CONFIG_ZRAM_WRITEBACK
+  * techpack: camera: fd: Properly fix double add into list
+  * msm: camera: ife: Do not wait for timeout for config done completion
+  * ANDROID: GKI: power_supply: Add PROP_MOISTURE_DETECTION_ENABLED
+  * smb5-lib: clear moisture_detected and icl vote
+  * smb5-lib: Use mutex instead of spin lock for moisture_detection_enable
+  * qpnp-smb5: check lpd_disable before moisture detect
+  * qpnp-smb5: Add support for PROP_MOISTURE_DETECTION_ENABLED
+  * drivers: thermal: cleanup thermal implementation
+  * BACKPORT: dfc_qmi: Honor tcp ancillary bit even when there is no change in grant
+  * BACKPORT: soc: qcom: smp2p_sleepstate: Add support for multiple clients
+  * BACKPORT: soc: qcom: smp2p_sleepstate: Fix compilation warning
+  * BACKPORT: soc: qcom: smp2p: Fix possible smp2p entry double free
+  * BACKPORT: soc: qcom: smp2p: Add support for suspend to disk
+  * BACKPORT: soc: qcom: smp2p: Log unchanged entries
+  * qmi_rmnet: Make powersave workqueue unbound and freezable
+  * dfc: not using alarm timer
+  * Revert "dfc: bearer based QMAP powersave"
+  * BACKPORT: page_alloc: consider highatomic reserve in watermark fast
+  * techpack: camera: Import xiaomi changes from psyche-r-oss
+  * techpack: camera: cam_fd: fix double add into list
+  * ARM: dts: msm: Update to LA.UM.9.12.r1-14000-SMxx50.0
+  * ARM: dts: msm: Update to LA.UM.9.12.r1-13800-SMxx50.0
+  * devicetree: Fast-Forward to LA.UM.9.12.r1-13600-SMxx50.0
+  * cpufreq_times: Add procfs node to get per app system statistics
+  * usb: dwc3-msm: Set usb_data_enabled initial value earlier
+  * usb: new attributes implementation to enable/disable usb data
+  * sysfs: Add sysfs_emit and sysfs_emit_at to format sysfs output
+  * msm: camera: Fix memory leak in cam_res_mgr_probe()
+  * techpack: camera: Fix memory leak
+  * msm-camera: Unmap secure buffers in secure usecase
+  * msm: cleanup: union gsi_wdi2_channel_scratch2_reg
+  * msm: cleanup: struct gsi_mhi_channel_scratch
+  * msm: cleanup: union gsi_evt_scratch
+  * msm: cleanup: union gsi_wdi_channel_scratch3_reg
+  * msm: cleanup: union gsi_channel_scratch
+  * Revert "ANDROID: kbuild: limit LTO inlining"
+  * scsi:Fix block layer elevator stuck issue
+  * debug: fix pcie device wakeup reason is unknown issue
+  * ARM64: configs: enable CONFIG_WIREGUARD
+  * ARM64: configs: umi: Disable Richwave RTC6226 FM Radio Receiver support
+  * ARM64: configs: umi: Enable ChaCha20Poly1305 for the usage of IPsec
+  * ANDROID: fully revert ANDROID_PARANOID_NETWORK
+  * ANDROID: revert all xt_qtaguid stuff
+  * qcacld-3.0: Do not allow any wakelocks to be held
+  * binder: Fix log spam caused by interrupted waits
+  * arm64: debug: Separate debug hooks based on target exception level
+  * msm:ADSPRPC: Fix to avoid Use after free in fastrpc_internal_munmap
+  * ARM: dts: Disable debug monitors by default
+  * ARM: dts: Disable IRQ debugging
+  * drm/msm/sde: Cache register values when performing clock control
+  * adreno_tz: Fix GPU target frequency calculation for high refresh rates
+  * input: fpc_tee: Allow filtering of key events
+  * thermal: core: Workaround for xiaomi thermal mitigation
+  * thermal: Add support for new xiaomi thermal message nodes
+  * drivers: thermal: Don't qualify thermal polling as high priority
+  * LPD: notify the usb hal to acquire the moisture status
+  * mm: compaction: Use MI DRM notifier API
+  * mm: compaction: Run ZRAM compaction on automatic compaction
+  * mm: compaction: Fix bad logging.
+  * mm: compaction: Add automatic compaction mechanism.
+  * workqueue: Implement delayed_work_busy().
+  * mm: zram: skip readahead for sync io pages
+  * ARM64: configs: umi: Enable zram-writeback support
+  * mm: zram: fix build error when zram wb disabled
+  * mm: zram: fix swapcached issue on Zram Writeback
+  * zram: Enable zRAM deduplication by default
+  * block: genhd: add 'groups' argument to device_add_disk
+  * drivers: zram_drv: Expose zram_compact() for zram0
+  * zram: Do not subtract deduplicated data from compressed size when freeing pages
+  * zram: off by one in read_block_state()
+  * zram_drv: allow reclaim on bio_alloc
+  * zram: replace fsync_bdev with sync_blockdev
+  * zram: fix race between zram_reset_device() and disksize_store()
+  * zram: switch to 64-bit hash for dedup
+  * bdi: remove BDI_CAP_SYNCHRONOUS_IO
+  * zram: defer bvec assignment
+  * zram: do not writeback deduped pages
+  * zram: trim the backing device upon registration
+  * zram: remove writeback_limit function
+  * zram: remove incompressible page handling
+  * zram: show deduped status in debugfs
+  * zram: enable dedup by default
+  * zram: use xxhash instead of jhash in dedup
+  * zram: fix race condition while returning zram_entry refcount
+  * zram: compare all the entries with same checksum for deduplication
+  * zram: make deduplication feature optional
+  * zram: implement deduplication in zram
+  * zram: introduce zram_entry to prepare dedup functionality
+  * zram: fix build
+  * zram: kang from v5.15
+  * zsmalloc: account the number of compacted pages correctly
+  * ARM64: configs: umi: Enable crypto LZ4
+  * lz4: remove unused functions
+  * lz4: staticify functions
+  * lz4_decompress: declare LZ4_decompress_safe_withPrefix64k static
+  * lib/lz4: explicitly support in-place decompression
+  * lz4: fix kernel decompression speed
+  * lib/lz4/lz4_decompress.c: document deliberate use of `&'
+  * lz4: do not export static symbol
+  * lib/lz4: update LZ4 decompressor module
+  * data-kernel: rmnet: shs: Fix consistent divide-by-zero when updating stats
+  * arm64: Inline the spin lock function family
+  * ARM64: configs: umi: Disable unused errata
+  * ARM64: configs: umi: Enable userspace CNTVCT_EL0 access for vDSO
+  * BACKPORT: disp: msm: sde: increase kickoff timeout for doze usecase
+  * Makefile: Use llvm ar and nm from path if available
+  * cnss: Do not mandate TESTMODE for netlink driver
+  * net: Allow BPF JIT to compile without module support
+  * ARM64: configs: umi: Disable some unuse drivers
+  * ARM64: configs: umi: Disable stability debug configs
+  * ARM64: configs: umi: Enable jump label
+  * arm64/kernel: jump_label: Switch to relative references
+  * locking/static_key: Add support for deferred static branches
+  * jump_label: Fix NULL dereference bug in __jump_label_mod_update()
+  * jump_label: Annotate entries that operate on __init code earlier
+  * jump_label: Implement generic support for relative references
+  * jump_label: Abstract jump_entry member accessors
+  * jump_label: Use static_key_linked() accessor
+  * mm/vmalloc.c: switch to WARN_ON() and move it under unlink_va()
+  * mm/vmalloc.c: get rid of one single unlink_va() when merge
+  * mm/vmalloc.c: preload a CPU with one object for split purpose
+  * mm/vmalloc.c: remove "node" argument
+  * mm/vmalloc.c: fix typo in comment
+  * vmalloc: export __vmalloc_node_range for CONFIG_TEST_VMALLOC_MODULE
+  * mm/vmalloc: pass VM_USERMAP flags directly to __vmalloc_node_range()
+  * mm/vmalloc: do not call kmemleak_free() on not yet accounted memory
+  * mm/vmalloc.c: make vmalloc_32_user() align base kernel virtual address to SHMLBA
+  * mm: convert totalram_pages and totalhigh_pages variables to atomic
+  * vfree: add debug might_sleep()
+  * mm/vmalloc.c: improve vfree() kerneldoc
+  * drivers: media: cvp: Fix -Wvoid-pointer-to-int-cast
+  * drivers: cpuidle: Remove unused update_ipi_history
+  * video: hfi_iris2: Fix -Wpointer-to-int-cast
+  * ARM64: configs: umi: Disable QHEE kernel memory protection
+  * ARM64: configs: umi: Enable power efficient workqueues
+  * ARM64: configs: umi: Increase vmstat interval to 20 seconds
+  * mm: add Kconfig interface for vmstat interval
+  * cpuidle: Do not select menu and ladder governors
+  * scsi: ufs: disable clock scaling
+  * rpmsg: glink: Remove IRQF_NO_SUSPEND
+  * mailbox: msm_qmp: Remove IRQF_NO_SUSPEND
+  * soc: qcom: smp2p: Remove IRQF_NO_SUSPEND
+  * ARM64: configs: Disable serial console support
+  * ARM64 configs: umi: Disable qti core control and sched autogroup
+  * ARM64: configs: umi: Disable some debug drivers
+  * cpuidle: lpm-levels: Remove debug event logging
+  * binder: Fix log spam caused by interrupted waits
+  * ARM64: configs: Bringup custom defconfig for UMI
+  * ASoC: pcm: Add 24bit playback audio support
+  * msm: kgsl: introduce CONFIG_CORESIGHT_ADRENO.
+  * GKI: ARM: dts: msm: disable coresight for kona/lito
+  * GKI: hwtracing: Add a driver for disabling coresight clocks
+  * tcp: Enable ECN negotiation by default
+  * tcp_bbr: centralize code to set gains
+  * block: disable I/O stats accounting by default
+  * drivers: gpu: msm: Only build adreno 6xx part
+  * video: backlight: disable modules enabled by default
+  * media: gspca: disable gspca module
+  * net: disable bridge netfilter module
+  * net: ipv4: disable modules which are enabled by default
+  * qcacmn: Fix suspicious string concatenation warning in fwlog
+  * rmnet_shs: Fix CFI violation in packet assignment
+  * rmnet_perf: Fix CFI violation in packet deaggregation
+  * ntfs: Fix ntfs_test_inode and ntfs_init_locked_inode function type If the kernel is built with CFI we hit a __cfi_check_fail while mounting a partition
+  * power: supply: Classify Battery Monitor Systems as batteries
+  * cpufreq: stats: Replace the global lock with atomic.
+  * subsystem_restart: Always performs soft resets when subsystems crash
+  * smb5: report fast charging when a proprietary charger is attached
+  * PM / sleep: Add sysfs to log device wakeup time
+  * soc: qcom: Add config to reduce SMP2P sleepstate wakeup time to 100ms
+  * net: cnss2: Avoid entering L1 state while mhi fast resuming
+  * block: blk-wbt: Check for WBT request before throttling down
+  * proc: some optimization for reclaim
+  * drivers: power: Import xiaomi modifications from elish-r-oss
+  * input: aw8697_haptic: Add support to retry f0 register check
+  * input: aw8697_haptic: Refactor for sanity and consistency
+  * input: aw8697_haptic: Remove duplicated aw8697_i2c_read usage in aw8697_irq
+  * input: aw8697_haptic: Add mutex lock for aw8697_haptic_rtp_init protection
+  * drivers: aw8697: Fix -Wpointer-to-int-cast
+  * ARM64: configs: Enable support for UAS storage devices
+  * ARM64: configs: Set CONFIG_HZ to 300
+  * input: touchscreen: xiaomi: Prevent unnecessary input sync
+  * drivers: Remove xiaomi disable LPM and IRQ boost modifcations
+  * firmware: Upgrade focaltech_ts FW from MIUI 21.4.21
+  * input: touchscreen: focaltech_spi: Upgrade ft3658 k11 firmware
+  * power: supply: qcom: Disable debug masks
+  * input: aw8697_haptic: Disable Debugging
+  * drivers: Remove xiaomi early fingerprint wakeup optimization
+  * ARM64: configs: Enable XFRM_MIGRATE
+  * ARM64: configs: Remove some debugging related features
+  * ARM64: configs: Enable ARM64 Crypto Extensions SM3/4 and CRC32
+  * ARM64: configs: Enable NTFS Filesystem
+  * ARM64: configs: Enable ExFAT Filesystem
+  * msm-poweroff: Store restart reason in panic
+  * printk: Increase kernel log buffer size
+  * smb5: Fix SDP current override for USB phy speed
+  * mm: Disable watermark boost feature for K4.19
+  * ARM64: configs: Skip file system sync in suspend
+  * ARM64: configs: Disable PASR on kona devices
+  * ARM64: configs: Reduce ION pool fill mark to 48MB
+  * ARM64: configs: Build seperate DTB/DTBOs
+  * ARM64: configs: Concatenate dtbs inside kernel image
+  * ARM64: configs: Build Compressed Kernel Image
+  * ARM64: configs: Build Qualcomm Atheros CLD WLAN module
+  * ARM64: configs: Enable CPU frequency transition statistics
+  * ARM64: configs: thyme: Enable support for block device writeback throttling
+  * ARM64: configs: lmi: Enable AW2015 RGB LED support
+  * ARM64: configs: lmi: Enable camera motor drivers
+  * ARM64: configs: cas: Enable thermal dimming
+  * ARM64: configs: apollo,cas: Enable panic on oops
+  * ARM64: configs: apollo: Enable GPIO testing mode driver
+  * ARM64: configs: Increase FRAME_WARN size to 4096
+  * ARM64: configs: Enable Dynamic printk support
+  * ARM64: configs: Disable MSM 11AD chip support
+  * ARM64: configs: Enable xiaomi touchfeature driver
+  * ARM64: configs: Disable USB CDC ADM support
+  * ARM64: configs: Disable APP Armor security
+  * ARM64: configs: Enable Ultrasound proximity driver
+  * ARM64: configs: Enable USB Remote NDIS support
+  * ARM64: configs: Disable USB Serial converter support
+  * ARM64: configs: Disable V4L2 Videobuf2 Core
+  * ARM64: configs: Enable SPI connected IR LED support
+  * ARM64: configs: Enable PM8008 regulator driver
+  * ARM64: configs: Enable device specific power supply drivers
+  * ARM64: configs: Enable high performance logchar driver
+  * ARM64: configs: Enable fastboot oem uart-enable command support
+  * ARM64: configs: Disable support for Virtual terminal
+  * ARM64: configs: Enable device specific fingerprint drivers
+  * ARM64: configs: Enable AWINIC AW8697 haptics driver
+  * ARM64: configs: Disable QTI Haptics support
+  * ARM64: configs: Enable device specific touchscreen drivers
+  * ARM64: configs: Disable Open-channel SSD target support
+  * ARM64: configs: Enable CNSS QCA6390 chipset support
+  * ARM64: configs: Enable QTI Smart Link Aggregation driver
+  * ARM64: configs: Enable NAT, PEDIT and CSUM classifier Actions
+  * ARM64: configs: Disable DEBUG_FS
+  * ARM64: configs: Build Wilocity wil6210 driver
+  * ARM64: configs: Enable Memory Technology Device (MTD) support
+  * ARM64: configs: Disable Modules signature
+  * ARM64: configs: Enable pstore support
+  * ARM64: configs: Increase Kernel log buffer size
+  * ARM64: configs: Enable Audit support
+  * ARM64: configs: Enable device specific board platform
+  * ARM64: configs: Initial copy of vendor/kona-perf_defconfig
+  * net: Add support for QTI Smart Link Aggregation driver
+  * init: do_mounts: Increase name value when block device is detected
+  * fs: pstore: Add support to capture last_kmsg
+  * disp: msm: sde: Force SDE fd to start from 1
+  * firmware: Import xiaomi touchscreens firmware
+  * video: backlight: qcom-spmi-wled: Disable CABC on low brightness
+  * video: backlight: Add support for thermal backlight dimming on J1S
+  * video: backlight: Create brightness clone sysfs node
+  * video: backlight: Notify on brightness node change
+  * Revert "usb: dwc3: Ensure blocking_sync waits until host mode starts or stops"
+  * Revert "usb: pd: Add support to disable pps capability"
+  * Revert "USB: pd: Restart host mode in high speed if no usb3 & dp concurrency"
+  * Revert "USB: pd: Add support for enabling PD2.0 only as source"
+  * usb: pd: Import xiaomi usbpd modifications
+  * usb: f_mtp: Set MTP interface same as PTP interface
+  * usb: f_gsi: Load wireless controller rndis for non MSOS devices
+  * usb: f_gsi: Set rndis over ethernet for MSOS devices
+  * usb: configs: Implement device attribute for MSOS vendor
+  * usb: configfs: Add function to disable usb power supply rechecking
+  * usb: gadget: composite: Set bcdUSB to 2.0 for not superspeed gadget
+  * usb: gadget: composite: Disable LPM and BESL support
+  * usb: dwc3: Disable USB LPM Feature
+  * tty: serial: Support fastboot oem uart-enable command
+  * staging: android: ion: adjust system heap pool orders
+  * staging: android: ion: Add xiaomi ion camera heap modifications
+  * spi: gen-qcom: increase transfer timeout
+  * soc: qcom: Add soc information for xiaomi SM8250 and SM7250 devices
+  * soc: qcom: service-locator: Enlarge locator service timeout value
+  * scsi: ufs: Address PA_HIBER8TIME fix for samsung KLUFG8RHDA-B2D1
+  * scsi: ufs: increase power control timeout
+  * mtd: devices: block2mtd: Sync scsi I/O on panic
+  * debug: Add support to dump kmsg logs in kernel panic/oops using mtdoops
+  * power: qcom: cas: Add support for 60W PD charging
+  * power: qcom: Import xiaomi power supply modifications
+  * Revert "qcom: step-chg-jeita: Add support for jeita fcc scaling"
+  * pinctrl: msm: Disable access to specified reserved gpios
+  * nfc: nq-nfc: Add xiaomi modifications for nfc bringup
+  * Revert "NFC: Add support for core init command"
+  * cnss2: Add support for loading different bdwlan firmwares
+  * net: cnss2: Add paramter to disable NV MAC support
+  * net: cnss2: Increase cnss-daemon qmi timeout
+  * media: rc: Add xiaomi modifications to IR driver
+  * media: msm: cvp: Replace fence request handler kthread with workqueue
+  * drivers: leds: Allow switching between dual flashlight leds
+  * drivers: leds: Add support for AWINIC AW2015 3 Channel LED driver
+  * drivers: cpuidle: Add xiaomi parameter to disable cpuidle and lpm
+  * drivers: iio: Add support for Xiaomi ultrasound proximity sensor
+  * drm: msm: Import xiaomi drm modifications
+  * thermal: bcl_pmic5: Apply xiaomi thermal modifications
+  * cpufreq: qcom: Always report maximum value of freq in limits_mitigation_notify()
+  * thermal: core: Implement thermal config switch
+  * drivers: char: Add support for high performance log driver
+  * mhi: mhi_qcom: Apply xiaomi modifications to sdx55 modem
+  * drivers: misc: Import xiaomi GPIO testing mode driver
+  * drivers: misc: Import Texas Instruments H-Bridge Stepper Motor Driver
+  * drivers: misc: Import AKM Sensortecs AK09970 HALL sensor driver
+  * block: Disable preemption before request_fn calls
+  * input: Add support to dump kernel logs by long pressing the buttons
+  * kernel: Implement sysfs to get powerup restart reasons
+  * input: touchscreen: nt36xxx: Disable Debugging
+  * input: touchscreen: fts_521: Disable Debugging
+  * input: touchscreen: fts_521: Disable touch debugfs support if !DEBUG_FS
+  * input: touchscreen: nt36672c: Disable Debugging
+  * input: touchscreen: xiaomi: Disable Debugging
+  * input: touchscreen: focaltech_touch: Disable Debugging
+  * input: touchscreen: focaltech_spi: Disable Debugging
+  * input: touchscreen: focaltech_touch: Disable Production test module
+  * input: touchscreen: focaltech_spi: Disable Production test module
+  * drivers: input: touchscreen: goodix_driver_gt9886: Implement double_tap node
+  * drivers: input: touchscreen: nt36672c: Implement double_tap node
+  * drivers: input: touchscreen: fts_521: Implement double_tap node
+  * drivers: input: touchscreen: focaltech_spi: Implement double_tap node
+  * drivers: input: touchscreen: focaltech_touch: Implement double_tap node
+  * drivers: input: touchscreen: Add an interface to expose TP features to userspace
+  * input: touchscreen: Add support for xiaomi touchfeature dirver
+  * input: touchscreen: Add support for Novatek NT36672c SPI touchscreen driver
+  * input: touchscreen: Add support for GOODIX GT9886 touchscreen driver
+  * input: touchscreen: Add support for STM FTS521 touchscreen driver
+  * input: touchscreen: Add support for FocalTech ft8719/ft5452 touchscreen drivers
+  * input: touchscreen: focaltech_spi: Don't ignore firmware files
+  * input: touchscreen: Add support for FocalTech ft3658 touchscreen driver
+  * input: touchscreen: Disable caf default touchscreen drivers
+  * input: misc: aw8697_haptic: Add support to reload firmware for umi
+  * input: misc: Add support for AWINIC AW8696 Haptic driver
+  * input: fingerprint: Add support for GOODIX FOD fingerprint driver
+  * input: fingerprint: Add support for GOODIX fingerprint driver
+  * input: fingerprint: Add support for FPC TEE fingerprint driver
+  * input: fingerprint: Add support for FPC FOD fingeprint driver
+  * drivers: input: Add support for fingerprint drivers
+  * techpack: Build high performance rmnet optimization drivers
+  * techpack: camera: Import minimal xiaomi camera modifications
+  * techpack: display: Import xiaomi display drivers modifications
+  * techpack: audio: Correct symlinks
+  * techpack: audio: Import xiaomi audio drivers modifications
+  * techpack: audio: ASoC: Add audio support for lito
+  * treewide: Remove all Android.mk files
+  * ARM64: Add Xiaomi SM8250 and SM7250 plaform configuration
+  * fs: exfat: Add support for building inside kernel
+  * Add 'fs/exfat/' from commit '034f47d607c441e7fb5be3eb71d7a289ef76bc0c'
+  * arch: arm64: dts: Exclude standard dts if vendor dts exists
+  * arm64: Don't build legacy QCOM DTS.
+  * ARM: dts: Build board specific dtbo overlays
+  * ARM64: dts: qcom: Import kona mtp devicetree
+  * ARM64: dts: Fix CCI timeout for OIS on xiaomi devices
+  * Revert "ARM64: dts: Remove address from node-name for reserved-mem regions"
+  * Revert "ARM64: dts: Correct SLPI/ADSP/SPSS/CDSP memory regions on LMI/CMI/UMI"
+  * Add 'arch/arm64/boot/dts/vendor/' from commit 'bd2d6b0afa1f8aba19e41ce3bc29c16745595efa'
+  * BACKPORT: scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting
+  * BACKPORT: dtc: Use pkg-config to locate libyaml
+  * BACKPORT: treewide: prefix header search paths with $(srctree)/
+  * BACKPORT: of: add dtc annotations functionality to dtx_diff
+  * BACKPORT: kbuild: consolidate Devicetree dtb build rules
+  * scripts: use aosp python mkdtboimg for cmd_mkdtimg
+  * scripts: Makefile: suppress DTC compiler warnings
+  * dtbo.img: build device tree overlay partition image
+  * build-dtbo: Support base dtbs which located in foreign folder
+  * Revert "scripts: gcc-wrapper: Use wrapper to check compiler warnings"
+  * scripts/dtc: Update to upstream version v1.5.0-30-g702c1b6c0e73
+  * scripts/dtc: Update to upstream version v1.5.0-23-g87963ee20693
+  * scripts/dtc: Update to upstream version v1.4.7-57-gf267e674d145
+  * scripts/dtc: Update to upstream version v1.4.7-14-gc86da84d30e4
+  * scripts/dtc: Add yamltree.c to dtc sources
+  * Android.bp: Namespace it
+  * Android: Add empty Android.mk file
+  * qcacld-3.0: Fix race during peer deletion in roaming scenario
+  * qcacld-3.0: Fallback to default WCNSS config path for custom ROMs
+  * qcacld-3.0: wlan_hdd_misc: Fix ini file path for oos11
+  * qcacld-3.0: Cleanup unused driver initialization code
+  * drivers: staging: qca-wifi-host-cmn: Move IPA_TCL_DATA_RING_IDX definition out of conditional statement
+  * qcacld-3.0: Disable build tagging.
+  * qcacld-3.0: Only call hdd_debugfs_process_mib_stats if debugfs is enabled.
+  * qcacld-3.0: qca6390_defconfig: Tone down debugging.
+  * qcacld-3.0: qca6390_defconfig: Enable power debug.
+  * qcacld-3.0: qca6390_defconfig: Enable desc debug check.
+  * qcacld-3.0: qca6390_defconfig: Enable multi-page allocation.
+  * qcacld-3.0: Fix regulatory domain country names.
+  * qcacld-3.0: Nuke rx_wakelock code entirely.
+  * qcacld-3.0: Defer HDD initialization.
+  * qcacld-3.0: Discard wlan_boot sysfs code on !CONFIG_MODULES.
+  * qcacld-3.0: Initialize variables to avoid errors during compilation.
+  * qcacld-3.0: Do not manually re-enable -Wmaybe-uninitialized.
+  * qcacld-3.0: Always force user build.
+  * qcacld-3.0: Nuke Kconfig-based configuration entirely.
+  * drivers: staging: Include qcacld-3.0 source
+  * Makefile: Set correct techpack audio header install directory
+  * Makefile: Add missing dst for techpack header include
+  * techpack: audio: makefile: do not export all the variables
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/opensource/video-driver into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-drivers into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/data-kernel into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/opensource/audio-kernel into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/fw-api into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0 into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * gitignore: do not ignore techpack and vendor device tree
+  * Merge branch 'linux-4.19.y' of https://github.com/jaegeuk/f2fs-stable into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * Merge tag 'LA.UM.9.12.r1-14800-SMxx50.QSSI13.0' of https://git.codelinaro.org/clo/la/kernel/msm-4.19 into LA.UM.9.12.r1-XXXX-SMxx50.QSSI13.0
+  * initial commit
+  * Merge a4341e9d9e9fa666a84167d89e2f5860b42ed6fc on remote branch
+  * f2fs: change to use atomic_t type form sbi.atomic_files
+  * f2fs: account swapfile inodes
+  * f2fs: allow direct read for zoned device
+  * f2fs: support recording errors into superblock
+  * f2fs: support recording stop_checkpoint reason into super_block
+  * f2fs: remove the unnecessary check in f2fs_xattr_fiemap
+  * f2fs: introduce cp_status sysfs entry
+  * f2fs: fix to detect corrupted meta ino
+  * f2fs: fix to account FS_CP_DATA_IO correctly
+  * f2fs: code clean and fix a type error
+  * f2fs: add "c_len" into trace_f2fs_update_extent_tree_range for compressed file
+  * f2fs: fix to do sanity check on summary info
+  * f2fs: fix to do sanity check on destination blkaddr during recovery
+  * f2fs: let FI_OPU_WRITE override FADVISE_COLD_BIT
+  * f2fs: fix race condition on setting FI_NO_EXTENT flag
+  * f2fs: remove redundant check in f2fs_sanity_check_cluster
+  * f2fs: add static init_idisk_time function to reduce the code
+  * f2fs: fix typo
+  * f2fs: fix wrong dirty page count when race between mmap and fallocate.
+  * f2fs: use COMPRESS_MAPPING to get compress cache mapping
+  * f2fs: return the tmp_ptr directly in __bitmap_ptr
+  * Merge "power: qpnp-fg-gen4: Improve SDAM corruption check"
+  * Merge "qcom/l2cache_counters: Add support to check available CPUS"
+  * Merge "cpu-topology: Don't error on more than CONFIG_NR_CPUS CPUs in device tree"
+  * qcom/l2cache_counters: Add support to check available CPUS
+  * Merge "FROMGIT: arm64: fix oops in concurrently setting insn_emulation sysctls"
+  * Merge "media:uvc: supports dynamic setting of urb configuration"
+  * FROMGIT: arm64: fix oops in concurrently setting insn_emulation sysctls
+  * media:uvc: supports dynamic setting of urb configuration
+  * Merge "msm: camera: Increase the total number of camera ID's supported"
+  * Merge "FROMLIST: binder: fix UAF of ref->proc caused by race condition"
+  * Merge "usb: gadget: rndis: prevent integer overflow in rndis_set_response()"
+  * Merge "soc: qcom: socinfo: Add soc information for Khaje IOT"
+  * msm: camera: Increase the total number of camera ID's supported
+  * cpu-topology: Don't error on more than CONFIG_NR_CPUS CPUs in device tree
+  * usb: gadget: rndis: prevent integer overflow in rndis_set_response()
+  * FROMLIST: binder: fix UAF of ref->proc caused by race condition
+  * Merge "msm_perf: check cpu_possible to improve stability"
+  * msm_perf: check cpu_possible to improve stability
+  * msm: adsprpc: Validate the CID
+  * f2fs: simplify code in f2fs_prepare_decomp_mem
+  * f2fs: replace logical value "true" with a int number
+  * f2fs: increase the limit for reserve_root
+  * f2fs: complete checkpoints during remount
+  * f2fs: flush pending checkpoints when freezing super
+  * f2fs: remove gc_urgent_high_limited for cleanup
+  * f2fs: fix wrong continue condition in GC
+  * f2fs: LFS mode does not support ATGC
+  * soc: qcom: socinfo: Add soc information for Khaje IOT
+  * f2fs: use onstack pages instead of pvec
+  * f2fs: intorduce f2fs_all_cluster_page_ready
+  * f2fs: clean up f2fs_abort_atomic_write()
+  * f2fs: handle decompress only post processing in softirq
+  * f2fs: do not allow to decompress files have FI_COMPRESS_RELEASED
+  * f2fs: do not set compression bit if kernel doesn't support
+  * f2fs: remove device type check for direct IO
+  * f2fs: fix null-ptr-deref in f2fs_get_dnode_of_data
+  * f2fs: revive F2FS_IOC_ABORT_VOLATILE_WRITE
+  * f2fs: fix fallocate to use file_modified to update permissions consistently
+  * vfs: introduce file_modified() helper
+  * f2fs: fix to do sanity check on segment type in build_sit_entries()
+  * f2fs: obsolete unused MAX_DISCARD_BLOCKS
+  * f2fs: fix to avoid use f2fs_bug_on() in f2fs_new_node_page()
+  * f2fs: fix to remove F2FS_COMPR_FL and tag F2FS_NOCOMP_FL at the same time
+  * f2fs: introduce sysfs atomic write statistics
+  * f2fs: don't bother wait_ms by foreground gc
+  * f2fs: invalidate meta pages only for post_read required inode
+  * f2fs: allow compression of files without blocks
+  * f2fs: fix to check inline_data during compressed inode conversion
+  * f2fs: fix to invalidate META_MAPPING before DIO write
+  * f2fs: adjust zone capacity when considering valid block count
+  * f2fs: enforce single zone capacity
+  * Revert "f2fs: handle decompress only post processing in softirq"
+  * Revert "f2fs: run GCs synchronously given user requests"
+  * power: qpnp-fg-gen4: Improve SDAM corruption check
+  * f2fs: remove redundant code for gc condition
+  * f2fs: handle decompress only post processing in softirq
+  * f2fs: introduce memory mode
+  * f2fs: initialize page_array_entry slab only if compression feature is on
+  * f2fs: optimize error handling in redirty_blocks
+  * f2fs: do not skip updating inode when retrying to flush node page
+  * f2fs: do not count ENOENT for error case
+  * f2fs: run GCs synchronously given user requests
+  * f2fs: attach inline_data after setting compression
+  * f2fs: attach inline_data after setting compression
+  * f2fs: fix to tag gcing flag on page during file defragment
+  * f2fs: replace F2FS_I(inode) and sbi by the local variable
+  * f2fs: add f2fs_init_write_merge_io function
+  * f2fs: avoid unneeded error handling for revoke_entry_slab allocation
+  * f2fs: allow compression for mmap files in compress_mode=user
+  * f2fs: fix typo in comment
+  * f2fs: make f2fs_read_inline_data() more readable
+  * f2fs: fix to do sanity check for inline inode
+  * f2fs: don't use casefolded comparison for "." and ".."
+  * f2fs: do not stop GC when requiring a free section
+  * f2fs: keep wait_ms if EAGAIN happens
+  * f2fs: introduce f2fs_gc_control to consolidate f2fs_gc parameters
+  * f2fs: reject test_dummy_encryption when !CONFIG_FS_ENCRYPTION
+  * f2fs: kill volatile write support
+  * f2fs: change the current atomic write way
+  * f2fs: don't need inode lock for system hidden quota
+  * f2fs: stop allocating pinned sections if EAGAIN happens
+  * f2fs: skip GC if possible when checkpoint disabling
+  * f2fs: give priority to select unpinned section for foreground GC
+  * f2fs: fix to do sanity check on total_data_blocks
+  * f2fs: fix deadloop in foreground GC
+  * f2fs: fix to do sanity check on block address in f2fs_do_zero_range()
+  * f2fs: fix to avoid f2fs_bug_on() in dec_valid_node_count()
+  * f2fs: write checkpoint during FG_GC
+  * f2fs: fix to clear dirty inode in f2fs_evict_inode()
+  * f2fs: extend stat_lock to avoid potential race in statfs
+  * f2fs: avoid infinite loop to flush node pages
+  * f2fs: use flush command instead of FUA for zoned device
+  * f2fs: remove WARN_ON in f2fs_is_valid_blkaddr
+  * f2fs: replace usage of found with dedicated list iterator variable
+  * f2fs: Remove usage of list iterator pas the loop for list_move_tail()
+  * f2fs: fix dereference of stale list iterator after loop body
+  * f2fs: fix to do sanity check on inline_dots inode
+  * f2fs: introduce data read/write showing path info
+  * f2fs: remove unnecessary f2fs_lock_op in f2fs_new_inode
+  * f2fs: don't set GC_FAILURE_PIN for background GC
+  * f2fs: check pinfile in gc_data_segment() in advance
+  * f2fs: should not truncate blocks during roll-forward recovery
+  * f2fs: fix wrong condition check when failing metapage read
+  * f2fs: keep io_flags to avoid IO split due to different op_flags in two fio holders
+  * f2fs: remove obsolete whint_mode
+  * f2fs: pass the bio operation to bio_alloc_bioset
+  * f2fs: don't pass a bio to f2fs_target_device
+  * f2fs: replace congestion_wait() calls with io_schedule_timeout()
+  * f2fs: fix to do sanity check on .cp_pack_total_block_count
+  * f2fs: make gc_urgent and gc_segment_mode sysfs node readable
+  * f2fs: use aggressive GC policy during f2fs_disable_checkpoint()
+  * f2fs: fix compressed file start atomic write may cause data corruption
+  * f2fs: initialize sbi->gc_mode explicitly
+  * f2fs: introduce gc_urgent_mid mode
+  * f2fs: compress: fix to print raw data size in error path of lz4 decompression
+  * f2fs: remove redundant parameter judgment
+  * f2fs: use spin_lock to avoid hang
+  * f2fs: don't get FREEZE lock in f2fs_evict_inode in frozen fs
+  * f2fs: remove unnecessary read for F2FS_FITS_IN_INODE
+  * f2fs: introduce F2FS_UNFAIR_RWSEM to support unfair rwsem
+  * f2fs: avoid an infinite loop in f2fs_sync_dirty_inodes
+  * f2fs: fix to do sanity check on curseg->alloc_type
+  * f2fs: fix to avoid potential deadlock
+  * f2fs: quota: fix loop condition at f2fs_quota_sync()
+  * f2fs: Restore rwsem lockdep support
+  * f2fs: fix missing free nid in f2fs_handle_failed_inode
+  * f2fs: add a way to limit roll forward recovery time
+  * f2fs: introduce F2FS_IPU_HONOR_OPU_WRITE ipu policy
+  * f2fs: adjust readahead block number during recovery
+  * f2fs: fix to unlock page correctly in error path of is_alive()
+  * f2fs: expose discard related parameters in sysfs
+  * f2fs: move discard parameters into discard_cmd_control
+  * f2fs: fix to enable ATGC correctly via gc_idle sysfs interface
+  * f2fs: move f2fs to use reader-unfair rwsems
+  * f2fs: do not allow partial truncation on pinned file
+  * f2fs: remove redunant invalidate compress pages
+  * f2fs: Simplify bool conversion
+  * f2fs: don't drop compressed page cache in .{invalidate,release}page
+  * f2fs: fix to reserve space for IO align feature
+  * f2fs: fix to check available space of CP area correctly in update_ckpt_flags()
+  * f2fs: support fault injection to f2fs_trylock_op()
+  * f2fs: clean up __find_inline_xattr() with __find_xattr()
+  * f2fs: fix to do sanity check on last xattr entry in __f2fs_setxattr()
+  * f2fs: do not bother checkpoint by f2fs_get_node_info
+  * f2fs: avoid down_write on nat_tree_lock during checkpoint
+  * f2fs: compress: fix potential deadlock of compress file
+  * f2fs: avoid EINVAL by SBI_NEED_FSCK when pinning a file
+  * f2fs: add gc_urgent_high_remaining sysfs node
+  * f2fs: fix to do sanity check in is_alive()
+  * f2fs: fix to avoid panic in is_alive() if metadata is inconsistent
+  * f2fs: fix to do sanity check on inode type during garbage collection
+  * f2fs: avoid duplicate call of mark_inode_dirty
+  * f2fs: fix remove page failed in invalidate compress pages
+  * f2fs: fix the f2fs_file_write_iter tracepoint
+  * f2fs: do not expose unwritten blocks to user by DIO
+  * f2fs: reduce indentation in f2fs_file_write_iter()
+  * f2fs: rework write preallocations
+  * f2fs: compress: reduce one page array alloc and free when write compressed page
+  * f2fs: show number of pending discard commands
+  * f2fs: check nr_pages for readahead
+  * f2fs: fix UAF in f2fs_available_free_memory
+  * f2fs: invalidate META_MAPPING before IPU/DIO write
+  * f2fs: support fault injection for dquot_initialize()
+  * f2fs: fix incorrect return value in f2fs_sanity_check_ckpt()
+  * f2fs: compress: disallow disabling compress on non-empty compressed file
+  * f2fs: compress: fix overwrite may reduce compress ratio unproperly
+  * f2fs: multidevice: support direct IO
+  * f2fs: introduce fragment allocation mode mount option
+  * f2fs: include non-compressed blocks in compr_written_block
+  * f2fs: fix wrong condition to trigger background checkpoint correctly
+  * f2fs: fix to use WHINT_MODE
+  * f2fs: fix up f2fs_lookup tracepoints
+  * f2fs: set SBI_NEED_FSCK flag when inconsistent node block found
+  * f2fs: introduce excess_dirty_threshold()
+  * f2fs: avoid attaching SB_ACTIVE flag during mount
+  * f2fs: quota: fix potential deadlock
+  * f2fs: should use GFP_NOFS for directory inodes
+  * f2fs: should put a page beyond EOF when preparing a write
+  * f2fs: deallocate compressed pages when error happens
+  * f2fs: enable realtime discard iff device supports discard
+  * f2fs: guarantee to write dirty data when enabling checkpoint back
+  * f2fs: fix to unmap pages from userspace process in punch_hole()
+  * f2fs: fix unexpected ENOENT comes from f2fs_map_blocks()
+  * f2fs: fix to account missing .skipped_gc_rwsem
+  * f2fs: adjust unlock order for cleanup
+  * f2fs: Don't create discard thread when device doesn't support realtime discard
+  * f2fs: rebuild nat_bits during umount
+  * f2fs: introduce periodic iostat io latency traces
+  * f2fs: separate out iostat feature
+  * f2fs: compress: do sanity check on cluster
+  * f2fs: fix description about main_blkaddr node
+  * f2fs: convert S_IRUGO to 0444
+  * f2fs: fix to keep compatibility of fault injection interface
+  * f2fs: support fault injection for f2fs_kmem_cache_alloc()
+  * f2fs: compress: allow write compress released file after truncate to zero
+  * f2fs: correct comment in segment.h
+  * f2fs: improve sbi status info in debugfs/f2fs/status
+  * f2fs: compress: avoid duplicate counting of valid blocks when read compressed file
+  * f2fs: fix to do sanity check for sb/cp fields correctly
+  * f2fs: avoid unneeded memory allocation in __add_ino_entry()
+  * f2fs: extent cache: support unaligned extent
+  * f2fs: Kconfig: clean up config options about compression
+  * f2fs: reduce the scope of setting fsck tag when de->name_len is zero
+  * f2fs: fix to stop filesystem update once CP failed
+  * f2fs: introduce discard_unit mount option
+  * f2fs: fix min_seq_blocks can not make sense in some scenes.
+  * f2fs: fix to force keeping write barrier for strict fsync mode
+  * f2fs: fix wrong checkpoint_changed value in f2fs_remount()
+  * f2fs: show sbi status in debugfs/f2fs/status
+  * f2fs: turn back remapped address in compressed page endio
+  * f2fs: change fiemap way in printing compression chunk
+  * f2fs: do not submit NEW_ADDR to read node block
+  * f2fs: compress: remove unneeded read when rewrite whole cluster
+  * f2fs: don't sleep while grabing nat_tree_lock
+  * f2fs: remove allow_outplace_dio()
+  * f2fs: make f2fs_write_failed() take struct inode
+  * f2fs: quota: fix potential deadlock
+  * f2fs: let's keep writing IOs on SBI_NEED_FSCK
+  * f2fs: Revert "f2fs: Fix indefinite loop in f2fs_gc() v1"
+  * f2fs: avoid to create an empty string as the extension_list
+  * f2fs: compress: fix to set zstd compress level correctly
+  * f2fs: add sysfs nodes to get GC info for each GC mode
+  * f2fs: drop dirty node pages when cp is in error status
+  * f2fs: initialize page->private when using for our internal use
+  * f2fs: compress: add nocompress extensions support
+  * Revert "f2fs: avoid attaching SB_ACTIVE flag during mount/remount"
+  * f2fs: remove false alarm on iget failure during GC
+  * f2fs: enable extent cache for compression files in read-only
+  * f2fs: fix to avoid adding tab before doc section
+  * f2fs: introduce f2fs_casefolded_name slab cache
+  * f2fs: swap: support migrating swapfile in aligned write mode
+  * f2fs: swap: remove dead codes
+  * f2fs: compress: add compress_inode to cache compressed blocks
+  * f2fs: clean up /sys/fs/f2fs/<disk>/features
+  * f2fs: add pin_file in feature list
+  * f2fs: Advertise encrypted casefolding in sysfs
+  * f2fs: Show casefolding support only when supported
+  * f2fs: support RO feature
+  * f2fs: logging neatening
+  * f2fs: restructure f2fs page.private layout
+  * f2fs: introduce FI_COMPRESS_RELEASED instead of using IMMUTABLE bit
+  * f2fs: compress: remove unneeded preallocation
+  * f2fs: avoid attaching SB_ACTIVE flag during mount/remount
+  * f2fs: atgc: export entries for better tunability via sysfs
+  * f2fs: compress: fix to disallow temp extension
+  * f2fs: let's allow compression for mmap files
+  * f2fs: add MODULE_SOFTDEP to ensure crc32 is included in the initramfs
+  * f2fs: return success if there is no work to do
+  * f2fs: compress: clean up parameter of __f2fs_cluster_blocks()
+  * f2fs: compress: remove unneeded f2fs_put_dnode()
+  * f2fs: atgc: fix to set default age threshold
+  * f2fs: Prevent swap file in LFS mode
+  * f2fs: fix to avoid racing on fsync_entry_slab by multi filesystem instances
+  * f2fs: add cp_error check in f2fs_write_compressed_pages
+  * f2fs: compress: rename __cluster_may_compress
+  * f2fs: return EINVAL for hole cases in swap file
+  * f2fs: avoid swapon failure by giving a warning first
+  * f2fs: compress: fix to assign cc.cluster_idx correctly
+  * f2fs: compress: fix race condition of overwrite vs truncate
+  * f2fs: compress: fix to free compress page correctly
+  * f2fs: support iflag change given the mask
+  * f2fs: avoid null pointer access when handling IPU error
+  * f2fs: drop inplace IO if fs status is abnormal
+  * f2fs: compress: remove unneed check condition
+  * f2fs: clean up left deprecated IO trace codes
+  * f2fs: avoid using native allocate_segment_by_default()
+  * f2fs: remove unnecessary struct declaration
+  * f2fs: fix to avoid NULL pointer dereference
+  * f2fs: avoid duplicated codes for cleanup
+  * f2fs: document: add description about compressed space handling
+  * f2fs: clean up build warnings
+  * f2fs: fix the periodic wakeups of discard thread
+  * f2fs: fix to avoid accessing invalid fio in f2fs_allocate_data_block()
+  * f2fs: fix to avoid GC/mmap race with f2fs_truncate()
+  * f2fs: set checkpoint_merge by default
+  * f2fs: Fix a hungtask problem in atomic write
+  * f2fs: fix to restrict mount condition on readonly block device
+  * f2fs: introduce gc_merge mount option
+  * f2fs: fix to cover __allocate_new_section() with curseg_lock
+  * f2fs: fix wrong alloc_type in f2fs_do_replace_block
+  * f2fs: delete empty compress.h
+  * f2fs: fix a typo in inode.c
+  * f2fs: allow to change discard policy based on cached discard cmds
+  * f2fs: fix to avoid touching checkpointed data in get_victim()
+  * f2fs: fix to update last i_size if fallocate partially succeeds
+  * f2fs: fix error path of f2fs_remount()
+  * f2fs: fix wrong comment of nat_tree_lock
+  * f2fs: fix to avoid out-of-bounds memory access
+  * f2fs: don't start checkpoint thread in readonly mountpoint
+  * f2fs: do not use AT_SSR mode in FG_GC & high urgent BG_GC
+  * f2fs: add sysfs nodes to get runtime compression stat
+  * f2fs: fix to use per-inode maxbytes in f2fs_fiemap
+  * f2fs: fix to align to section for fallocate() on pinned file
+  * f2fs: expose # of overprivision segments
+  * f2fs: fix error handling in f2fs_end_enable_verity()
+  * f2fs: fix a redundant call to f2fs_balance_fs if an error occurs
+  * f2fs: remove unused file_clear_encrypt()
+  * f2fs: check if swapfile is section-alligned
+  * f2fs: fix last_lblock check in check_swap_activate_fast
+  * f2fs: remove unnecessary IS_SWAPFILE check
+  * f2fs: Replace one-element array with flexible-array member
+  * f2fs: compress: Allow modular (de)compression algorithms
+  * f2fs: check discard command number before traversing discard pending list
+  * f2fs: update comments for explicit memory barrier
+  * f2fs: remove unused FORCE_FG_GC macro
+  * f2fs: avoid unused f2fs_show_compress_options()
+  * f2fs: fix panic during f2fs_resize_fs()
+  * f2fs: fix to allow migrating fully valid segment
+  * f2fs: fix a spelling error
+  * f2fs: fix a spacing coding style
+  * fs: Enable bmap() function to properly return errors
+  * f2fs: remove obsolete f2fs.txt
+  * fs-verity: support reading signature with ioctl
+  * fs-verity: support reading descriptor with ioctl
+  * fs-verity: support reading Merkle tree with ioctl
+  * fs-verity: add FS_IOC_READ_VERITY_METADATA ioctl
+  * fs-verity: don't pass whole descriptor to fsverity_verify_signature()
+  * fs-verity: factor out fsverity_get_descriptor()
+  * f2fs: remove FAULT_ALLOC_BIO
+  * f2fs: use blkdev_issue_flush in __submit_flush_wait
+  * f2fs: remove a few bd_part checks
+  * fs-verity: move structs needed for file signing to UAPI header
+  * fs-verity: rename "file measurement" to "file digest"
+  * fs-verity: rename fsverity_signed_digest to fsverity_formatted_digest
+  * fs-verity: remove filenames from file comments
+  * fs-verity: use smp_load_acquire() for ->i_verity_info
+  * Documentation: f2fs: fix typo s/automaic/automatic
+  * f2fs: give a warning only for readonly partition
+  * f2fs: don't grab superblock freeze for flush/ckpt thread
+  * f2fs: add ckpt_thread_ioprio sysfs node
+  * f2fs: introduce checkpoint_merge mount option
+  * f2fs: relocate inline conversion from mmap() to mkwrite()
+  * f2fs: fix a wrong condition in __submit_bio
+  * f2fs: remove unnecessary initialization in xattr.c
+  * f2fs: fix to avoid inconsistent quota data
+  * f2fs: flush data when enabling checkpoint back
+  * f2fs: deprecate f2fs_trace_io
+  * f2fs: remove unused stat_{inc, dec}_atomic_write
+  * f2fs: introduce sb_status sysfs node
+  * f2fs: fix to use per-inode maxbytes
+  * f2fs: compress: fix potential deadlock
+  * libfs: unexport generic_ci_d_compare() and generic_ci_d_hash()
+  * f2fs: fix to set/clear I_LINKABLE under i_lock
+  * f2fs: fix null page reference in redirty_blocks
+  * f2fs: clean up post-read processing
+  * f2fs: trival cleanup in move_data_block()
+  * f2fs: fix out-of-repair __setattr_copy()
+  * f2fs: fix to tag FIEMAP_EXTENT_MERGED in f2fs_fiemap()
+  * f2fs: introduce a new per-sb directory in sysfs
+  * f2fs: compress: support compress level
+  * f2fs: compress: deny setting unsupported compress algorithm
+  * f2fs: relocate f2fs_precache_extents()
+  * f2fs: enforce the immutable flag on open files
+  * f2fs: enhance to update i_mode and acl atomically in f2fs_setattr()
+  * f2fs: fix to set inode->i_mode correctly for posix_acl_update_mode
+  * f2fs: Replace expression with offsetof()
+  * f2fs: handle unallocated section and zone on pinned/atgc
+  * f2fs: compress: fix compression chksum
+  * f2fs: fix shift-out-of-bounds in sanity_check_raw_super()
+  * f2fs: fix race of pending_pages in decompression
+  * f2fs: fix to account inline xattr correctly during recovery
+  * f2fs: inline: fix wrong inline inode stat
+  * f2fs: inline: correct comment in f2fs_recover_inline_data
+  * f2fs: don't check PAGE_SIZE again in sanity_check_raw_super()
+  * f2fs: convert to F2FS_*_INO macro
+  * f2fs: introduce max_io_bytes, a sysfs entry, to limit bio size
+  * f2fs: don't allow any writes on readonly mount
+  * f2fs: avoid race condition for shrinker count
+  * f2fs: add F2FS_IOC_DECOMPRESS_FILE and F2FS_IOC_COMPRESS_FILE
+  * f2fs: add compress_mode mount option
+  * f2fs: Remove unnecessary unlikely()
+  * f2fs: init dirty_secmap incorrectly
+  * f2fs: remove buffer_head which has 32bits limit
+  * f2fs: fix wrong block count instead of bytes
+  * f2fs: use new conversion functions between blks and bytes
+  * f2fs: rename logical_to_blk and blk_to_logical
+  * f2fs: fix kbytes written stat for multi-device case
+  * f2fs: compress: support chksum
+  * f2fs: fix to avoid REQ_TIME and CP_TIME collision
+  * f2fs: change to use rwsem for cp_mutex
+  * f2fs: Handle casefolding with Encryption
+  * fscrypt: Have filesystems handle their d_ops
+  * libfs: Add generic function for setting dentry_ops
+  * f2fs: Remove the redundancy initialization
+  * f2fs: remove writeback_inodes_sb in f2fs_remount
+  * f2fs: fix double free of unicode map
+  * f2fs: fix compat F2FS_IOC_{MOVE,GARBAGE_COLLECT}_RANGE
+  * f2fs: avoid unneeded data copy in f2fs_ioc_move_range()
+  * f2fs: add F2FS_IOC_SET_COMPRESS_OPTION ioctl
+  * f2fs: add F2FS_IOC_GET_COMPRESS_OPTION ioctl
+  * f2fs: move ioctl interface definitions to separated file
+  * f2fs: fix to seek incorrect data offset in inline data file
+  * f2fs: call f2fs_get_meta_page_retry for nat page
+  * fscrypt: rename DCACHE_ENCRYPTED_NAME to DCACHE_NOKEY_NAME
+  * fscrypt: don't call no-key names "ciphertext names"
+  * fscrypt: export fscrypt_d_revalidate()
+  * f2fs: code cleanup by removing unnecessary check
+  * f2fs: wait for sysfs kobject removal before freeing f2fs_sb_info
+  * f2fs: fix writecount false positive in releasing compress blocks
+  * f2fs: introduce check_swap_activate_fast()
+  * f2fs: don't issue flush in f2fs_flush_device_cache() for nobarrier case
+  * f2fs: handle errors of f2fs_get_meta_page_nofail
+  * f2fs: fix to set SBI_NEED_FSCK flag for inconsistent inode
+  * f2fs: reject CASEFOLD inode flag without casefold feature
+  * f2fs: fix memory alignment to support 32bit
+  * f2fs: fix slab leak of rpages pointer
+  * f2fs: compress: fix to disallow enabling compress on non-empty file
+  * f2fs: compress: introduce cic/dic slab cache
+  * f2fs: compress: introduce page array slab cache
+  * f2fs: fix to do sanity check on segment/section count
+  * f2fs: fix to check segment boundary during SIT page readahead
+  * f2fs: fix uninit-value in f2fs_lookup
+  * vfs: track per-sb writeback errors and report them to syncfs
+  * f2fs: remove unneeded parameter in find_in_block()
+  * f2fs: fix wrong total_sections check and fsmeta check
+  * f2fs: remove duplicated code in sanity_check_area_boundary
+  * f2fs: remove unused check on version_bitmap
+  * f2fs: relocate blkzoned feature check
+  * f2fs: do sanity check on zoned block device path
+  * f2fs: add trace exit in exception path
+  * f2fs: change return value of reserved_segments to unsigned int
+  * f2fs: clean up kvfree
+  * f2fs: change virtual mapping way for compression pages
+  * f2fs: change return value of f2fs_disable_compressed_file to bool
+  * f2fs: change i_compr_blocks of inode to atomic value
+  * f2fs: ignore compress mount option on image w/o compression feature
+  * f2fs: allocate proper size memory for zstd decompress
+  * f2fs: change compr_blocks of superblock info to 64bit
+  * f2fs: add block address limit check to compressed file
+  * f2fs: check position in move range ioctl
+  * f2fs: correct statistic of APP_DIRECT_IO/APP_DIRECT_READ_IO
+  * f2fs: support age threshold based garbage collection
+  * f2fs: Use generic casefolding support
+  * fs: Add standard casefolding support
+  * unicode: Add utf8_casefold_hash
+  * f2fs: compress: use more readable atomic_t type for {cic,dic}.ref
+  * f2fs: fix compile warning
+  * f2fs: support 64-bits key in f2fs rb-tree node entry
+  * f2fs: inherit mtime of original block during GC
+  * f2fs: record average update time of segment
+  * f2fs: introduce inmem curseg
+  * f2fs: compress: remove unneeded code
+  * f2fs: remove duplicated type casting
+  * f2fs: support zone capacity less than zone size
+  * f2fs: update changes in upstream on GC_URGENT_HIGH
+  * f2fs: Return EOF on unaligned end of file DIO read
+  * f2fs: fix indefinite loop scanning for free nid
+  * f2fs: Fix type of section block count variables
+  * f2fs: prepare a waiter before entering io_schedule
+  * f2fs: update_sit_entry: Make the judgment condition of f2fs_bug_on more intuitive
+  * f2fs: replace test_and_set/clear_bit() with set/clear_bit()
+  * f2fs: make file immutable even if releasing zero compression block
+  * f2fs: compress: disable compression mount option if compression is off
+  * f2fs: compress: add sanity check during compressed cluster read
+  * f2fs: use macro instead of f2fs verity version
+  * f2fs: fix deadlock between quota writes and checkpoint
+  * f2fs: correct comment of f2fs_exist_written_data
+  * f2fs: compress: delay temp page allocation
+  * f2fs: compress: fix to update isize when overwriting compressed file
+  * f2fs: space related cleanup
+  * f2fs: fix use-after-free issue
+  * f2fs: Change the type of f2fs_flush_inline_data() to void
+  * f2fs: add F2FS_IOC_SEC_TRIM_FILE ioctl
+  * f2fs: should avoid inode eviction in synchronous path
+  * f2fs: segment.h: delete a duplicated word
+  * f2fs: compress: fix to avoid memory leak on cc->cpages
+  * f2fs: use generic names for generic ioctls
+  * f2fs: don't keep meta inode pages used for compressed block migration
+  * f2fs: fix error path in do_recover_data()
+  * f2fs: fix to wait GCed compressed page writeback
+  * f2fs: remove write attribute of main_blkaddr sysfs node
+  * f2fs: add GC_URGENT_LOW mode in gc_urgent
+  * f2fs: avoid readahead race condition
+  * f2fs: fix return value of move_data_block()
+  * f2fs: add parameter op_flag in f2fs_submit_page_read()
+  * f2fs: split f2fs_allocate_new_segments()
+  * f2fs: lost matching-pair of trace in f2fs_truncate_inode_blocks
+  * f2fs: fix an oops in f2fs_is_compressed_page
+  * f2fs: make trace enter and end in pairs for unlink
+  * f2fs: fix to check page dirty status before writeback
+  * f2fs: remove the unused compr parameter
+  * f2fs: support to trace f2fs_fiemap()
+  * f2fs: support to trace f2fs_bmap()
+  * f2fs: fix wrong return value of f2fs_bmap_compress()
+  * f2fs: remove useless parameter of __insert_free_nid()
+  * f2fs: fix typo in comment of f2fs_do_add_link
+  * f2fs: fix to wait page writeback before update
+  * f2fs: show more debug info for per-temperature log
+  * f2fs: add f2fs_gc exception handle in f2fs_ioc_gc_range
+  * f2fs: clean up parameter of f2fs_allocate_data_block()
+  * f2fs: shrink node_write lock coverage
+  * f2fs: add prefix for exported symbols
+  * f2fs: use kfree() to free variables allocated by match_strdup()
+  * f2fs: get the right gc victim section when section has several segments
+  * f2fs: fix a race condition between f2fs_write_end_io and f2fs_del_fsync_node_entry
+  * f2fs: remove useless truncate in f2fs_collapse_range()
+  * f2fs: use kfree() instead of kvfree() to free superblock data
+  * f2fs: avoid checkpatch error
+  * xfs: drop I_DIRTY_TIME_EXPIRED
+
 n.n.n / 2022-10-22
 ==================
 
