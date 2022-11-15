@@ -195,7 +195,8 @@ void f2fs_abort_atomic_write(struct inode *inode, bool clean)
 	iput(fi->cow_inode);
 	fi->cow_inode = NULL;
 	release_atomic_write_cnt(inode);
-	clear_inode_flag(inode, FI_ATOMIC_COMMIT);
+	clear_inode_flag(inode, FI_ATOMIC_COMMITTED);
+	clear_inode_flag(inode, FI_ATOMIC_REPLACE);
 	clear_inode_flag(inode, FI_ATOMIC_FILE);
 	stat_dec_atomic_inode(inode);
 
@@ -276,10 +277,8 @@ static void __complete_revoke_list(struct inode *inode, struct list_head *head,
 		kmem_cache_free(revoke_entry_slab, cur);
 	}
 
-	if (!revoke && truncate) {
+	if (!revoke && truncate)
 		f2fs_do_truncate_blocks(inode, start_index * PAGE_SIZE, false);
-		clear_inode_flag(inode, FI_ATOMIC_REPLACE);
-	}
 }
 
 static int __f2fs_commit_atomic_write(struct inode *inode)
@@ -354,7 +353,7 @@ out:
 		sbi->revoked_atomic_block += fi->atomic_write_cnt;
 	} else {
 		sbi->committed_atomic_block += fi->atomic_write_cnt;
-		set_inode_flag(inode, FI_ATOMIC_COMMIT);
+		set_inode_flag(inode, FI_ATOMIC_COMMITTED);
 	}
 
 	__complete_revoke_list(inode, &revoke_list, ret ? true : false);
@@ -873,7 +872,7 @@ block_t f2fs_get_unusable_blocks(struct f2fs_sb_info *sbi)
 	}
 	mutex_unlock(&dirty_i->seglist_lock);
 
-	unusable = holes[DATA] > holes[NODE] ? holes[DATA] : holes[NODE];
+	unusable = max(holes[DATA], holes[NODE]);
 	if (unusable > ovp_holes)
 		return unusable - ovp_holes;
 	return 0;
@@ -1144,13 +1143,12 @@ static int __submit_discard_cmd(struct f2fs_sb_info *sbi,
 		if (time_to_inject(sbi, FAULT_DISCARD)) {
 			f2fs_show_injection_info(sbi, FAULT_DISCARD);
 			err = -EIO;
-			goto submit;
-		}
-		err = __blkdev_issue_discard(bdev,
+		} else {
+			err = __blkdev_issue_discard(bdev,
 					SECTOR_FROM_BLOCK(start),
 					SECTOR_FROM_BLOCK(len),
 					GFP_NOFS, 0, &bio);
-submit:
+		}
 		if (err) {
 			spin_lock_irqsave(&dc->lock, flags);
 			if (dc->state == D_PARTIAL)

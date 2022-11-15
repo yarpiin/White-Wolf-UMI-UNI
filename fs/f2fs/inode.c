@@ -624,7 +624,7 @@ void f2fs_update_inode(struct inode *inode, struct page *node_page)
 	ri->i_blocks = cpu_to_le64(SECTOR_TO_BLOCK(inode->i_blocks) + 1);
 
 	if (!f2fs_is_atomic_file(inode) ||
-			is_inode_flag_set(inode, FI_ATOMIC_COMMIT))
+			is_inode_flag_set(inode, FI_ATOMIC_COMMITTED))
 		ri->i_size = cpu_to_le64(i_size_read(inode));
 
 	if (et) {
