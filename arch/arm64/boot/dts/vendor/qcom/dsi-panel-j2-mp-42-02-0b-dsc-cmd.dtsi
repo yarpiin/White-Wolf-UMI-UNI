@@ -370,27 +370,27 @@
 	mi,mdss-dsi-dimlayer-brightness-alpha-lut-item-count = <21>;
 	mi,mdss-dsi-dimlayer-brightness-alpha-lut =
 	/* brightness  alpha */
-		<0          0xFF
-		 4          0xEB
-		 8          0xEA
-		 12         0xE9
-		 13         0xE8
-		 20         0xE5
-		 24         0xE3
-		 30         0xE0
-		 68         0xD0
-		 133        0xC0
-		 218        0xB0
-		 328        0xA0
-		 486        0x90
-		 642        0x80
-		 832        0x70
-		 1043       0x60
-		 1267       0x50
-		 1500       0x40
-		 1770       0x30
-		 2000       0x24
-		 2047       0x21>;
+		<0          0xD9
+		 4          0xD4
+		 8          0xD1
+		 12         0xC7
+		 13         0xC1
+		 20         0xB4
+		 24         0xB1
+		 30         0xA9
+		 68         0xA5
+		 133        0x66
+		 218        0x57
+		 328        0x50
+		 486        0x44
+		 642        0x38
+		 832        0x32
+		 1043       0x21
+		 1267       0x28
+		 1500       0x12
+		 1770       0x5
+		 2000       0x1
+		 2047       0x0>;
 
 	qcom,mdss-dsi-display-timings {
 		timing@0{
