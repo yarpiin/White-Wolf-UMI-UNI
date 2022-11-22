@@ -362,6 +362,7 @@
 	mi,mdss-dsi-panel-dc-update-d2-index = <6>;
 
 	mi,mdss-panel-on-dimming-delay = <0>;
+    mi,disp-fod-off-dimming-delay = <300>;
 
 	mi,mdss-dsi-panel-fod-dimlayer-enabled;
 	mi,mdss-panel-delay-after-fod-hbm-off;
