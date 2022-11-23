@@ -133,20 +133,14 @@ static void set_compress_new_inode(struct f2fs_sb_info *sbi, struct inode *dir,
 	unsigned char noext_cnt = F2FS_OPTION(sbi).nocompress_ext_cnt;
 	int i, cold_count, hot_count;
 
+	/* Caller should give the name of regular file or directory. */
 	if (!f2fs_sb_has_compression(sbi) || !name)
 		return;
 	if (!S_ISREG(inode->i_mode) && !S_ISDIR(inode->i_mode))
 		return;
 
-	/* Inherit the compression flag in directory */
-	if ((F2FS_I(dir)->i_flags & F2FS_COMPR_FL)) {
-		set_compress_context(inode);
-		return;
-	}
-
-	/* Start to check extension list */
-	if (!ext_cnt)
-		return;
+	if (S_ISDIR(inode->i_mode))
+		goto inherit_comp;
 
 	/* Don't compress hot files. */
 	f2fs_down_read(&sbi->sb_lock);
@@ -171,6 +165,12 @@ static void set_compress_new_inode(struct f2fs_sb_info *sbi, struct inode *dir,
 			return;
 		}
 	}
+inherit_comp:
+	/* Inherit the {no-}compression flag in directory */
+	if (F2FS_I(dir)->i_flags & F2FS_NOCOMP_FL)
+		F2FS_I(inode)->i_flags |= F2FS_NOCOMP_FL;
+	else if (F2FS_I(dir)->i_flags & F2FS_COMPR_FL)
+		set_compress_context(inode);
 }
 
 /*
